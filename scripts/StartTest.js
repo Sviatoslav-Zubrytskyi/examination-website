@@ -1,4 +1,3 @@
-
 function startTest() {
     buttonStart.style = "display:none"
     console.log("start test")
