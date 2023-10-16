@@ -3,7 +3,7 @@ class TestPageGen {
         this.pageNumber = pageNumber;
     }
     newTestPage() {
-        this.buttonStart.style = "display:none"
+        buttonStart.style = "display:none"
         console.log("start test")
         
         this.main = document.createElement("main");
@@ -52,7 +52,7 @@ class TestPageGen {
         this.q2.type = "radio";
         this.q2.setAttribute("name", "q");
         this.q2.style = "display:block; "
-        this.label2.appendChild(q2);
+        this.label2.appendChild(this.q2);
         this.label2.innerHTML += questions[this.pageNumber].questionList[2];
 
         this.label3 = document.createElement("label");
@@ -72,7 +72,7 @@ class TestPageGen {
         this.q4.type = "radio";
         this.q4.setAttribute("name", "q");
         this.q4.style = "display:block; "
-        this.label4.appendChild(q4);
+        this.label4.appendChild(this.q4);
         this.label4.innerHTML += questions[this.pageNumber].questionList[4];
 
         this.buttonGoBack = document.createElement("button");
@@ -95,23 +95,25 @@ class TestPageGen {
 
         this.bGoForward = document.createElement("button");
         this.bGoForward.type="button";
-        this.bGoForward.addEventListener("click", this.goForward);
+        this.bGoForward.addEventListener("click", goForward);
         this.imgGoForward = document.createElement("img");
         this.imgGoForward.src= './src/goForward.png';
         this.imgGoForward.style = "height:5vh;width:5vh;"
         this.bGoForward.appendChild(this.imgGoForward);
         this.bGoForward.style = "margin:0;background-color:white;width:10vh;height:60px;cursor:pointer;"
         this.divButtons.appendChild(this.bGoForward);
+        function goForward() {
+        console.log("Go forward");
+        function answer() {
+            console.log("answer");
+        }
+        function goBack() {
+            console.log("Go back");
+        }
+    }
 
     }
-    goForward() {
-        console.log("Go forward");
-    }
-    answer() {
-        console.log("answer");
-    }
-    goBack() {
-        console.log("Go back");
-    }
+
+
 
 }   
