@@ -12,7 +12,6 @@ class TestPageGen {
         this.main.setAttribute("id", "main")
         document.body.appendChild(this.main)
         this.main.style = "border:solid black 1px;height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:" + this.display;
-        // console.log(this.display);
 
         this.h1Count = document.createElement("h1");
         this.h1Count.innerHTML = "Question " + (this.pageNumber+1) + "/"+questions.length;
@@ -113,8 +112,6 @@ class TestPageGen {
             console.log(currentPage)
             testPages[currentPage].main.style["display"] = "none";
             testPages[currentPage+1].main.style["display"] = "block";
-            // testPages[currentPage].main.style = "border:solid black 1px;height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:none;"
-           // testPages[currentPage+1].main.style = "border:solid black 1px;height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:block;"
             currentPage++;
         }
     }
@@ -128,7 +125,6 @@ class TestPageGen {
                     console.log("Question " + i + " is incorrect");
                     labels[i-1].style = "font-size:3dvh;color:red;display:block;";
                 }
-                //console.log(questions[page].questionList[i].answer)
             }
             
     }
@@ -140,8 +136,6 @@ class TestPageGen {
             if(currentPage != 0) {
                 testPages[currentPage].main.style["display"] = "none";
                 testPages[currentPage-1].main.style["display"] = "block";
-                //testPages[currentPage].main.style = "border:solid black 1px;height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:none;"
-                //testPages[currentPage-1].main.style = "border:solid black 1px;height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:block;"
                 currentPage--;
             }
     }
