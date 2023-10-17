@@ -6,8 +6,6 @@ class TestPageGen {
     }
 
     newTestPage() {
-        
-        
         this.main = document.createElement("main");
         this.main.setAttribute("id", "main")
         document.body.appendChild(this.main)
@@ -128,9 +126,6 @@ class TestPageGen {
             }
             
     }
-
-
-    
     goBack() {
             console.log("Go back");
             if(currentPage != 0) {
@@ -139,8 +134,4 @@ class TestPageGen {
                 currentPage--;
             }
     }
-    
-
-
-
 }   
