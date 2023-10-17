@@ -1,18 +1,19 @@
+let pageCount = 0;
+let testPages=[];
+questions.forEach((question) => {
+    testPages.push(new TestPageGen(pageCount, "none"))
+    testPages[pageCount].newTestPage();
 
+    pageCount ++;
+});
 //const TestPage0 = new TestPageGen(1, "block");
 
 function startTest() {
-    //TestPage0.newTestPage();
-    let pageCount = 0;
-    let testPages=[];
-    questions.forEach((question) => {
-        testPages.push(new TestPageGen(pageCount, "block"))
-        testPages[pageCount].newTestPage();
-        console.log(testPages)
-        //console.log(pageCount);
+    //console.log(testPages[0].display)
+    // if you change testPages[pageNumber].display = block nothing changes as page is already generated
 
-        pageCount ++;
-});
+    testPages[0].main.style = "border:solid black 1px;height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:block;";
+    buttonStart.style = "display:none";
 
 }
 
@@ -23,6 +24,7 @@ function startTest() {
 
 
 // each page gets unique id number for easier navigation. Navigation bar on the left could be added later
+//1) Done
 
 // each page's answers are generated in random order and each question has only 1 correct answer which should be declared later. 
 //After pressing Answer button, style of the questions should be changed depended on wether you are right or not

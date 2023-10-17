@@ -1,3 +1,4 @@
+currentPage = 0;
 class TestPageGen {
     constructor(pageNumber, display) {
         this.pageNumber = pageNumber;
@@ -5,15 +6,26 @@ class TestPageGen {
     }
     goForward() {
         console.log("Go forward");
+        if(currentPage != questions.length-1) {
+            console.log(currentPage)
+            testPages[currentPage].main.style = "border:solid black 1px;height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:none;"
+            testPages[currentPage+1].main.style = "border:solid black 1px;height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:block;"
+            currentPage++;
+        }
     }
     answer() {
             console.log("answer");
     }
     goBack() {
             console.log("Go back");
+            if(currentPage != 0) {
+                testPages[currentPage].main.style = "border:solid black 1px;height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:none;"
+                testPages[currentPage-1].main.style = "border:solid black 1px;height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:block;"
+                currentPage--;
+            }
     }
     newTestPage() {
-        buttonStart.style = "display:none";
+        
         
         this.main = document.createElement("main");
         this.main.setAttribute("id", "main")
