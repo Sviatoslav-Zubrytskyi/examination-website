@@ -4,26 +4,7 @@ class TestPageGen {
         this.pageNumber = pageNumber;
         this.display = display;
     }
-    goForward() {
-        console.log("Go forward");
-        if(currentPage != questions.length-1) {
-            console.log(currentPage)
-            testPages[currentPage].main.style = "border:solid black 1px;height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:none;"
-            testPages[currentPage+1].main.style = "border:solid black 1px;height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:block;"
-            currentPage++;
-        }
-    }
-    answer() {
-            console.log("answer");
-    }
-    goBack() {
-            console.log("Go back");
-            if(currentPage != 0) {
-                testPages[currentPage].main.style = "border:solid black 1px;height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:none;"
-                testPages[currentPage-1].main.style = "border:solid black 1px;height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:block;"
-                currentPage--;
-            }
-    }
+
     newTestPage() {
         
         
@@ -31,10 +12,10 @@ class TestPageGen {
         this.main.setAttribute("id", "main")
         document.body.appendChild(this.main)
         this.main.style = "border:solid black 1px;height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:" + this.display;
-        console.log(this.display);
+        // console.log(this.display);
 
         this.h1Count = document.createElement("h1");
-        this.h1Count.innerHTML = "Question" + (this.pageNumber+1) + "/"+questions.length;
+        this.h1Count.innerHTML = "Question " + (this.pageNumber+1) + "/"+questions.length;
         this.h1Count.style = "text-align:center;height:5vh";
         this.main.appendChild(this.h1Count)
 
@@ -53,49 +34,49 @@ class TestPageGen {
         this.h2Q = document.createElement("h2");
         this.h2Q.style = "margin:0;padding:0;"
         this.form.appendChild(this.h2Q);
-        this.h2Q.innerHTML = questions[this.pageNumber].questionList["question"];
+        this.h2Q.innerHTML = questions[this.pageNumber].questionList.question;
 
 
         this.label1 = document.createElement("label");
         this.form.appendChild(this.label1);
-        this.label1.style = "font-size:3dvh"
+        this.label1.style = "font-size:3dvh;display:block;"
         this.q1 = document.createElement("input");
         this.q1.type = "radio";
         this.q1.setAttribute("name", "q");
-        this.q1.style = "display:block; "
+        this.q1.style = "display:inline-block; "
         this.label1.appendChild(this.q1);
-        this.label1.innerHTML += questions[this.pageNumber].questionList[1];
+        this.label1.innerHTML += questions[this.pageNumber].questionList[1].answer;
 
 
         this.label2 = document.createElement("label");
         this.form.appendChild(this.label2);
-        this.label2.style = "font-size:3dvh"
+        this.label2.style = "font-size:3dvh;display:block;"
         this.q2 = document.createElement("input");
         this.q2.type = "radio";
         this.q2.setAttribute("name", "q");
-        this.q2.style = "display:block; "
+        this.q2.style = "display:inline-block; "
         this.label2.appendChild(this.q2);
-        this.label2.innerHTML += questions[this.pageNumber].questionList[2];
+        this.label2.innerHTML += questions[this.pageNumber].questionList[2].answer;
 
         this.label3 = document.createElement("label");
         this.form.appendChild(this.label3);
-        this.label3.style = "font-size:3dvh"
+        this.label3.style = "font-size:3dvh;display:block;"
         this.q3 = document.createElement("input");
         this.q3.type = "radio";
         this.q3.setAttribute("name", "q");
-        this.q3.style = "display:block; "
+        this.q3.style = "display:inline-block; "
         this.label3.appendChild(this.q3);
-        this.label3.innerHTML += questions[this.pageNumber].questionList[3];
+        this.label3.innerHTML += questions[this.pageNumber].questionList[3].answer;
 
         this.label4 = document.createElement("label");
         this.form.appendChild(this.label4);
-        this.label4.style = "font-size:3dvh"
+        this.label4.style = "font-size:3dvh;display:block;"
         this.q4 = document.createElement("input");
         this.q4.type = "radio";
         this.q4.setAttribute("name", "q");
-        this.q4.style = "display:block; "
+        this.q4.style = "display:inline-block; "
         this.label4.appendChild(this.q4);
-        this.label4.innerHTML += questions[this.pageNumber].questionList[4];
+        this.label4.innerHTML += questions[this.pageNumber].questionList[4].answer;
 
         this.buttonGoBack = document.createElement("button");
         this.buttonGoBack.type="button";
@@ -109,8 +90,8 @@ class TestPageGen {
 
         this.bAnswer = document.createElement("button");
         this.bAnswer.type = "button";
-        this.bAnswer.addEventListener("click", this.answer);
-        this.bAnswer.innerHTML = "Answer";
+        this.bAnswer.addEventListener("click", () => this.answer(this.pageNumber));
+        this.bAnswer.innerHTML = "Show answer";
         this.bAnswer.style = "margin:0; background-color:white;width:300px;height:60px;cursor:pointer;"
         this.divButtons.appendChild(this.bAnswer);
 
@@ -126,7 +107,44 @@ class TestPageGen {
         this.divButtons.appendChild(this.bGoForward);
 
     }
+    goForward() {
+        console.log("Go forward");
+        if(currentPage != questions.length-1) {
+            console.log(currentPage)
+            testPages[currentPage].main.style["display"] = "none";
+            testPages[currentPage+1].main.style["display"] = "block";
+            // testPages[currentPage].main.style = "border:solid black 1px;height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:none;"
+           // testPages[currentPage+1].main.style = "border:solid black 1px;height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:block;"
+            currentPage++;
+        }
+    }
+    answer(page) {
+            const labels = [this.label1,this.label2, this.label3, this.label4]
+            for(let i =1; i<5; i++) {
+                if(questions[page].questionList[i].correct){
+                    console.log("Question " + i + " is correct");
+                    labels[i-1].style = "font-size:3dvh;color:green;display:block;";
+                } else {
+                    console.log("Question " + i + " is incorrect");
+                    labels[i-1].style = "font-size:3dvh;color:red;display:block;";
+                }
+                //console.log(questions[page].questionList[i].answer)
+            }
+            
+    }
 
+
+    
+    goBack() {
+            console.log("Go back");
+            if(currentPage != 0) {
+                testPages[currentPage].main.style["display"] = "none";
+                testPages[currentPage-1].main.style["display"] = "block";
+                //testPages[currentPage].main.style = "border:solid black 1px;height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:none;"
+                //testPages[currentPage-1].main.style = "border:solid black 1px;height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:block;"
+                currentPage--;
+            }
+    }
     
 
 

@@ -4,7 +4,7 @@ questions.forEach((question) => {
     testPages.push(new TestPageGen(pageCount, "none"))
     testPages[pageCount].newTestPage();
 
-    pageCount ++;
+    pageCount++;
 });
 //const TestPage0 = new TestPageGen(1, "block");
 
@@ -16,16 +16,6 @@ function startTest() {
     buttonStart.style = "display:none";
 
 }
-
-// forEach question in array questions -> generate new page 
-//DONE
-
-
-
-
-// each page gets unique id number for easier navigation. Navigation bar on the left could be added later
-//1) Done
-
 // each page's answers are generated in random order and each question has only 1 correct answer which should be declared later. 
 //After pressing Answer button, style of the questions should be changed depended on wether you are right or not
 
