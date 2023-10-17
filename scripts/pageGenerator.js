@@ -9,7 +9,7 @@ class TestPageGen {
         this.main = document.createElement("main");
         this.main.setAttribute("id", "main")
         document.body.appendChild(this.main)
-        this.main.style = "border:solid black 1px;height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:" + this.display;
+        this.main.style = "height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:" + this.display;
 
         this.h1Count = document.createElement("h1");
         this.h1Count.innerHTML = "Question " + (this.pageNumber+1) + "/"+questions.length;
@@ -17,11 +17,11 @@ class TestPageGen {
         this.main.appendChild(this.h1Count)
 
         this.divQuestion = document.createElement("div");
-        this.divQuestion.style = "height:60%;max-height:500px;min-height:200px;max-width:100%;min-width:700px;width:60dvw;border:solid black 1px;margin:0;padding:0;";
+        this.divQuestion.style = "height:60%;max-height:500px;min-height:200px;max-width:100%;min-width:700px;width:60dvw;margin:0;padding:0 20px 0 20px;";
         this.main.appendChild(this.divQuestion);
 
         this.divButtons = document.createElement("div");
-        this.divButtons.style ="display:flex; height:20%;width:100%; justify-content:center; align-items:center;gap:50px";
+        this.divButtons.style ="display:flex; height:20%;width:100%; justify-content:center; align-items:center;gap:auto";
         this.main.appendChild(this.divButtons);
 
         this.form = document.createElement("form");
@@ -29,14 +29,14 @@ class TestPageGen {
         this.divQuestion.appendChild(this.form);
 
         this.h2Q = document.createElement("h2");
-        this.h2Q.style = "margin:0;padding:0;"
+        this.h2Q.style = "margin-botton:10px;padding:0;font-size:2dvh;"
         this.form.appendChild(this.h2Q);
         this.h2Q.innerHTML = questions[this.pageNumber].questionList.question;
 
 
         this.label1 = document.createElement("label");
         this.form.appendChild(this.label1);
-        this.label1.style = "font-size:3dvh;display:block;"
+        this.label1.style = "font-size:2dvh;display:block;"
         this.q1 = document.createElement("input");
         this.q1.type = "radio";
         this.q1.setAttribute("name", "q");
@@ -47,7 +47,7 @@ class TestPageGen {
 
         this.label2 = document.createElement("label");
         this.form.appendChild(this.label2);
-        this.label2.style = "font-size:3dvh;display:block;"
+        this.label2.style = "font-size:2dvh;display:block;"
         this.q2 = document.createElement("input");
         this.q2.type = "radio";
         this.q2.setAttribute("name", "q");
@@ -57,7 +57,7 @@ class TestPageGen {
 
         this.label3 = document.createElement("label");
         this.form.appendChild(this.label3);
-        this.label3.style = "font-size:3dvh;display:block;"
+        this.label3.style = "font-size:2dvh;display:block;"
         this.q3 = document.createElement("input");
         this.q3.type = "radio";
         this.q3.setAttribute("name", "q");
@@ -67,7 +67,7 @@ class TestPageGen {
 
         this.label4 = document.createElement("label");
         this.form.appendChild(this.label4);
-        this.label4.style = "font-size:3dvh;display:block;"
+        this.label4.style = "font-size:2dvh;display:block;"
         this.q4 = document.createElement("input");
         this.q4.type = "radio";
         this.q4.setAttribute("name", "q");
@@ -82,14 +82,14 @@ class TestPageGen {
         this.imgGoBack.src= './src/goBack.png';
         this.imgGoBack.style = "height:5vh;width:5vh;"
         this.buttonGoBack.appendChild(this.imgGoBack);
-        this.buttonGoBack.style = "margin:0; background-color:white;width:10vh;height:60px;cursor:pointer;"
+        this.buttonGoBack.style = "margin-right:100px; background-color:white;width:10vh;height:60px;cursor:pointer;border:none;"
         this.divButtons.appendChild(this.buttonGoBack);
 
         this.bAnswer = document.createElement("button");
         this.bAnswer.type = "button";
         this.bAnswer.addEventListener("click", () => this.answer(this.pageNumber));
         this.bAnswer.innerHTML = "Show answer";
-        this.bAnswer.style = "margin:0; background-color:white;width:300px;height:60px;cursor:pointer;"
+        this.bAnswer.style = "margin:0; background-color:white;max-width:300px;width:30dvh;min-width:100px; max-height:60px;height:10dvh;min-height:20px;cursor:pointer;"
         this.divButtons.appendChild(this.bAnswer);
 
 
@@ -100,7 +100,7 @@ class TestPageGen {
         this.imgGoForward.src= './src/goForward.png';
         this.imgGoForward.style = "height:5vh;width:5vh;"
         this.bGoForward.appendChild(this.imgGoForward);
-        this.bGoForward.style = "margin:0;background-color:white;width:10vh;height:60px;cursor:pointer;"
+        this.bGoForward.style = "margin-left:100px;background-color:white;width:10vh;height:60px;cursor:pointer;border:none;"
         this.divButtons.appendChild(this.bGoForward);
 
     }
@@ -118,10 +118,10 @@ class TestPageGen {
             for(let i =1; i<5; i++) {
                 if(questions[page].questionList[i].correct){
                     console.log("Question " + i + " is correct");
-                    labels[i-1].style = "font-size:3dvh;color:green;display:block;";
+                    labels[i-1].style = "font-size:2dvh;color:green;display:block;";
                 } else {
                     console.log("Question " + i + " is incorrect");
-                    labels[i-1].style = "font-size:3dvh;color:red;display:block;";
+                    labels[i-1].style = "font-size:2dvh;color:red;display:block;";
                 }
             }
             
