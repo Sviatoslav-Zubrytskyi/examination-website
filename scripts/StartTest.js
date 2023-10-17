@@ -1,10 +1,26 @@
-const TestPage0 = new TestPageGen(1);
+
+//const TestPage0 = new TestPageGen(1, "block");
 
 function startTest() {
-    TestPage0.newTestPage();
+    //TestPage0.newTestPage();
+    let pageCount = 0;
+    let testPages=[];
+    questions.forEach((question) => {
+        testPages.push(new TestPageGen(pageCount, "block"))
+        testPages[pageCount].newTestPage();
+        console.log(testPages)
+        //console.log(pageCount);
+
+        pageCount ++;
+});
+
 }
 
-// forEach question in array questions -> generate new page
+// forEach question in array questions -> generate new page 
+//DONE
+
+
+
 
 // each page gets unique id number for easier navigation. Navigation bar on the left could be added later
 

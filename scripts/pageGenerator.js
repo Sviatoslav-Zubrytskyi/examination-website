@@ -1,18 +1,28 @@
 class TestPageGen {
-    constructor(pageNumber) {
+    constructor(pageNumber, display) {
         this.pageNumber = pageNumber;
+        this.display = display;
+    }
+    goForward() {
+        console.log("Go forward");
+    }
+    answer() {
+            console.log("answer");
+    }
+    goBack() {
+            console.log("Go back");
     }
     newTestPage() {
-        buttonStart.style = "display:none"
-        console.log("start test")
+        buttonStart.style = "display:none";
         
         this.main = document.createElement("main");
         this.main.setAttribute("id", "main")
         document.body.appendChild(this.main)
-        this.main.style = "border:solid black 1px;height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;"
+        this.main.style = "border:solid black 1px;height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:" + this.display;
+        console.log(this.display);
 
         this.h1Count = document.createElement("h1");
-        this.h1Count.innerHTML = "Question .../13";
+        this.h1Count.innerHTML = "Question" + (this.pageNumber+1) + "/"+questions.length;
         this.h1Count.style = "text-align:center;height:5vh";
         this.main.appendChild(this.h1Count)
 
@@ -31,7 +41,7 @@ class TestPageGen {
         this.h2Q = document.createElement("h2");
         this.h2Q.style = "margin:0;padding:0;"
         this.form.appendChild(this.h2Q);
-        this.h2Q.innerHTML = questions[this.pageNumber].questionList["Question"];
+        this.h2Q.innerHTML = questions[this.pageNumber].questionList["question"];
 
 
         this.label1 = document.createElement("label");
@@ -77,7 +87,7 @@ class TestPageGen {
 
         this.buttonGoBack = document.createElement("button");
         this.buttonGoBack.type="button";
-        this.buttonGoBack.addEventListener("click", goBack);
+        this.buttonGoBack.addEventListener("click", this.goBack);
         this.imgGoBack = document.createElement("img");
         this.imgGoBack.src= './src/goBack.png';
         this.imgGoBack.style = "height:5vh;width:5vh;"
@@ -87,7 +97,7 @@ class TestPageGen {
 
         this.bAnswer = document.createElement("button");
         this.bAnswer.type = "button";
-        this.bAnswer.addEventListener("click", answer);
+        this.bAnswer.addEventListener("click", this.answer);
         this.bAnswer.innerHTML = "Answer";
         this.bAnswer.style = "margin:0; background-color:white;width:300px;height:60px;cursor:pointer;"
         this.divButtons.appendChild(this.bAnswer);
@@ -95,24 +105,17 @@ class TestPageGen {
 
         this.bGoForward = document.createElement("button");
         this.bGoForward.type="button";
-        this.bGoForward.addEventListener("click", goForward);
+        this.bGoForward.addEventListener("click", this.goForward);
         this.imgGoForward = document.createElement("img");
         this.imgGoForward.src= './src/goForward.png';
         this.imgGoForward.style = "height:5vh;width:5vh;"
         this.bGoForward.appendChild(this.imgGoForward);
         this.bGoForward.style = "margin:0;background-color:white;width:10vh;height:60px;cursor:pointer;"
         this.divButtons.appendChild(this.bGoForward);
-        function goForward() {
-        console.log("Go forward");
-        function answer() {
-            console.log("answer");
-        }
-        function goBack() {
-            console.log("Go back");
-        }
-    }
 
     }
+
+    
 
 
 
