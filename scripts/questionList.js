@@ -42,12 +42,12 @@ const questions = [
     new Question(
         'The statement defines a Business information system.</br></br>Fill in the blanks with the best alternative to make the definition complete.</br></br>"A business information system is a group of interralated components that work collectively to carry out ...A() ... in order to convert data into information products that can be used to support ... B() ... in an organisation".', 
         "(A) analyses; (B) sales", false, 
-        "(A) all sorts of actions; (B) tactical and operationalactivities", true, 
+        "(A) all sorts of actions; (B) tactical and operational activities", true, 
         "(A) transactions and calculations; (B) business decisions",false, 
         "(A) tasks; (B) the people", false
     ),
     new Question(
-        "Which of the following statement about System Analysis is correct?",
+        "Which of the following statement(s) about System Analysis is correct?",
         "None", false,
         "System Analysis consists of the components Fact-Finding and Documentation ",true,
         "Only after the requirements determination the System Analysis can take place",false,
@@ -113,7 +113,7 @@ const questions = [
         "In client/server model, typical desktop PCs serve as the 'front-end' access point to business applications.</br></br>Which of the following statements is correct?",
         "A two-tier C/S offers better security than a three-tier C/S", false,
         "In a three-tier C/S, the second tier typically serves as the dara source",false,
-        "Due to scalabillity, a three-tier system is preffered as compared to a two-tier C/S",false,
+        "Due to scalabillity, a three-tier system is preffered as compared to a two-tier C/S",true,
         "A two-tier C/S occasionally called a 'thin-client' model", false
     ),
 ];
