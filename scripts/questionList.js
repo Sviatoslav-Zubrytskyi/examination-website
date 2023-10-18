@@ -3,19 +3,19 @@ class Question {
     constructor(question0, answer1, correct1 = false, answer2, correct2 = false, answer3, correct3 = false, answer4, correct4 = false) {
         this.questionList = {
             "question": question0,
-            1: {
+            0: {
                 "answer":answer1,
                 "correct":correct1,
             },
-            2: {
+            1: {
                 "answer":answer2,
                 "correct":correct2,
             },
-            3: {
+            2: {
                 "answer":answer3,
                 "correct":correct3,
             },
-            4: {
+            3: {
                 "answer":answer4,
                 "correct":correct4,
             },

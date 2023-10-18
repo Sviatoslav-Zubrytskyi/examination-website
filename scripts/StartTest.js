@@ -8,6 +8,6 @@ questions.forEach((question) => {
 });
 
 function startTest() {
-    testPages[0].main.style = "height:65dvh;max-height:690px;min-height:400px;max-width:1100px;min-width:700px;width:60dvw;margin:20vh auto;display:block;";
+    testPages[0].main.style["display"] = "block";
     buttonStart.style = "display:none";
 }

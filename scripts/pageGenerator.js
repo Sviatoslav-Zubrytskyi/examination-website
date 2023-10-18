@@ -25,6 +25,7 @@ class TestPageGen {
         this.main.appendChild(this.divButtons);
 
         this.form = document.createElement("form");
+        this.form.setAttribute("action", "./scripts/pageGenerator.js")
         this.form.style = "width:100%;height:100%;margin:0;padding:0;";
         this.divQuestion.appendChild(this.form);
 
@@ -40,9 +41,14 @@ class TestPageGen {
         this.q1 = document.createElement("input");
         this.q1.type = "radio";
         this.q1.setAttribute("name", "q");
-        this.q1.style = "display:inline-block; "
+        // this.q1.setAttribute("checked", true);
+        this.q1.style = "display:inline-block; ";
+        this.q1.setAttribute("id", "q1");
+        //this.q1.disabled = true;
+
+        this.label1.for = this.q1.id;
         this.label1.appendChild(this.q1);
-        this.label1.innerHTML += questions[this.pageNumber].questionList[1].answer;
+        this.label1.innerHTML += questions[this.pageNumber].questionList[0].answer;
 
 
         this.label2 = document.createElement("label");
@@ -50,10 +56,13 @@ class TestPageGen {
         this.label2.style = "font-size:2dvh;display:block;"
         this.q2 = document.createElement("input");
         this.q2.type = "radio";
+        this.q2.setAttribute("id", "q2");
+        
+        this.label2.for = this.q2.id;
         this.q2.setAttribute("name", "q");
         this.q2.style = "display:inline-block; "
         this.label2.appendChild(this.q2);
-        this.label2.innerHTML += questions[this.pageNumber].questionList[2].answer;
+        this.label2.innerHTML += questions[this.pageNumber].questionList[1].answer;
 
         this.label3 = document.createElement("label");
         this.form.appendChild(this.label3);
@@ -61,9 +70,12 @@ class TestPageGen {
         this.q3 = document.createElement("input");
         this.q3.type = "radio";
         this.q3.setAttribute("name", "q");
+        this.q3.setAttribute("id", "q3");
+        
+        this.label3.for = this.q3.id;
         this.q3.style = "display:inline-block; "
         this.label3.appendChild(this.q3);
-        this.label3.innerHTML += questions[this.pageNumber].questionList[3].answer;
+        this.label3.innerHTML += questions[this.pageNumber].questionList[2].answer;
 
         this.label4 = document.createElement("label");
         this.form.appendChild(this.label4);
@@ -71,9 +83,12 @@ class TestPageGen {
         this.q4 = document.createElement("input");
         this.q4.type = "radio";
         this.q4.setAttribute("name", "q");
+        this.q4.setAttribute("id", "q4");
+        
+        this.label4.for = this.q4.id;
         this.q4.style = "display:inline-block; "
-        this.label4.appendChild(this.q4);
-        this.label4.innerHTML += questions[this.pageNumber].questionList[4].answer;
+        this.q4 = this.label4.appendChild(this.q4);
+        this.label4.innerHTML += questions[this.pageNumber].questionList[3].answer;
 
         this.buttonGoBack = document.createElement("button");
         this.buttonGoBack.type="button";
@@ -114,17 +129,35 @@ class TestPageGen {
         }
     }
     answer(page) {
-            const labels = [this.label1,this.label2, this.label3, this.label4]
-            for(let i =1; i<5; i++) {
-                if(questions[page].questionList[i].correct){
-                    console.log("Question " + i + " is correct");
-                    labels[i-1].style = "font-size:2dvh;color:green;display:block;";
-                } else {
-                    console.log("Question " + i + " is incorrect");
-                    labels[i-1].style = "font-size:2dvh;color:red;display:block;";
-                }
-            }
+            //this.form.submit();
+            this.labels = [this.label1,this.label2, this.label3, this.label4];
+            this.checkBoxes = [this.q1,this.q2,this.q3,this.q4];
+
+
+            console.log(this);
+            //this.q.addEventListener("change",() => {
+            //    if ( this.q1.checked ) {
+            //        console.log("checked")
+            //     } else {
+            //        console.log("unchecked");
+            //     }
+            //})
+
+            // for (const checkBox of checkBoxes) {
+                // console.log(checkBox,checkBox.checked, checkBox.value);
+            // }
             
+            for (const [i, label] of labels.entries()){
+                console.log(this.checkBoxes[i].checked);
+                //console.log(label.firstChild.checked);
+                if(questions[page].questionList[i].correct){
+                    //console.log("Question " + i + " is correct");
+                    label.style = "font-size:2dvh;color:green;display:block;";
+                } else {
+                    //console.log("Question " + i + " is checked and incorrect");
+                    label.style = "font-size:2dvh;color:red;display:block;";
+                }
+            }        
     }
     goBack() {
             console.log("Go back");
