@@ -3,6 +3,7 @@ class TestPageGen {
     constructor(pageNumber, display) {
         this.pageNumber = pageNumber;
         this.display = display;
+        this.displayButtonAnswer = "answer";
     }
 
     newTestPage() {
@@ -25,7 +26,6 @@ class TestPageGen {
         this.main.appendChild(this.divButtons);
 
         this.form = document.createElement("form");
-        this.form.setAttribute("action", "./scripts/pageGenerator.js")
         this.form.style = "width:100%;height:100%;margin:0;padding:0;";
         this.divQuestion.appendChild(this.form);
 
@@ -41,7 +41,7 @@ class TestPageGen {
         this.q1 = document.createElement("input");
         this.q1.type = "radio";
         this.q1.setAttribute("name", "q");
-        // this.q1.setAttribute("checked", true);
+        this.q1.setAttribute("checked", true);
         this.q1.style = "display:inline-block; ";
         this.q1.setAttribute("id", "q1");
         //this.q1.disabled = true;
@@ -120,47 +120,48 @@ class TestPageGen {
 
     }
     goForward() {
-        console.log("Go forward");
         if(currentPage != questions.length-1) {
-            console.log(currentPage)
             testPages[currentPage].main.style["display"] = "none";
             testPages[currentPage+1].main.style["display"] = "block";
             currentPage++;
         }
     }
     answer(page) {
-            //this.form.submit();
-            this.labels = [this.label1,this.label2, this.label3, this.label4];
-            this.checkBoxes = [this.q1,this.q2,this.q3,this.q4];
+            const labels = [this.label1,this.label2, this.label3, this.label4];
+            const checkBoxes = [this.q1,this.q2,this.q3,this.q4];
+            if (this.displayButtonAnswer == "answer") {
+                for (const [i, label] of labels.entries()){
 
+                    if (questions[page].questionList[i].correct  && label.firstChild.checked){
+                        finalScore++;
+                    }
 
-            console.log(this);
-            //this.q.addEventListener("change",() => {
-            //    if ( this.q1.checked ) {
-            //        console.log("checked")
-            //     } else {
-            //        console.log("unchecked");
-            //     }
-            //})
-
-            // for (const checkBox of checkBoxes) {
-                // console.log(checkBox,checkBox.checked, checkBox.value);
-            // }
-            
-            for (const [i, label] of labels.entries()){
-                console.log(this.checkBoxes[i].checked);
-                //console.log(label.firstChild.checked);
-                if(questions[page].questionList[i].correct){
-                    //console.log("Question " + i + " is correct");
-                    label.style = "font-size:2dvh;color:green;display:block;";
-                } else {
-                    //console.log("Question " + i + " is checked and incorrect");
-                    label.style = "font-size:2dvh;color:red;display:block;";
+                    if(questions[page].questionList[i].correct){
+                        label.style = "font-size:2dvh;color:green;display:block;";
+                    } else if (!questions[page].questionList[i].correct  && label.firstChild.checked) {
+    
+                        label.style = "font-size:2dvh;color:red;display:block;";
+                    } else {
+                        label.style = "font-size:2dvh;color:gray;display:block;";
+                    }
+    
+                    label.firstChild.disabled = true;
+                    
+                }if(page==questions.length-1) {
+                    this.bAnswer.innerHTML = "Finish test";
+                    this.displayButtonAnswer = "Finish test";
+                }else {
+                    this.bAnswer.innerHTML = "Next question";
+                    this.displayButtonAnswer = "Next question";
                 }
-            }        
+            }else if(this.displayButtonAnswer == "Next question") {
+                this.goForward();
+            } else if (this.displayButtonAnswer== "Finish test") {
+
+            }
+           
     }
     goBack() {
-            console.log("Go back");
             if(currentPage != 0) {
                 testPages[currentPage].main.style["display"] = "none";
                 testPages[currentPage-1].main.style["display"] = "block";

@@ -113,7 +113,7 @@ const questions = [
         "In client/server model, typical desktop PCs serve as the 'front-end' access point to business applications.</br></br>Which of the following statements is correct?",
         "A two-tier C/S offers better security than a three-tier C/S", false,
         "In a three-tier C/S, the second tier typically serves as the dara source",false,
-        "Due to scalabillity, a three-tier system is preffered as compared to a two-tier C/S",false,
+        "Due to scalabillity, a three-tier system is preffered as compared to a two-tier C/S",true,
         "A two-tier C/S occasionally called a 'thin-client' model", false
     ),
 ];
