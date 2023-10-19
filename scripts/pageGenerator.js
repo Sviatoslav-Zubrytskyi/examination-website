@@ -1,5 +1,7 @@
 let currentPage = 0;
 let popUpExists = false;
+let finalScore = 0;
+let answeredQuestions = 0;
 class TestPageGen {
     constructor(pageNumber, display) {
         this.pageNumber = pageNumber;
@@ -137,9 +139,11 @@ class TestPageGen {
         }
     }
     answer(page) {
+            
             const labels = [this.label1,this.label2, this.label3, this.label4];
             const checkBoxes = [this.q1,this.q2,this.q3,this.q4];
             if (this.displayButtonAnswer == "answer") {
+                answeredQuestions++;
                 for (const [i, label] of labels.entries()){
 
                     if (questions[page].questionList[i].correct  && label.firstChild.checked){
@@ -169,22 +173,27 @@ class TestPageGen {
                 this.goForward();
             } else if (this.displayButtonAnswer== "Show result") {
                 if (!popUpExists){
-                    console.log("popUp doest not exist. Create new one:" + popUpExists)
-                    createPopUp(finalScore);
+                    createPopUp();
                     popUpExists = true;
                 } else {
                     divMainPopUp.style["opacity"] = 1;
                     divMainPopUp.style["z-index"] = 999;
+                }
+                if (answeredQuestions == questions.length){
+                    pPopUp.innerHTML = "Your score: " + finalScore + "/" + questions.length;
+                } else {
+                    pPopUp.innerHTML = "Answer all the questions first";
                 }
                 
             }
            
     }
     goBack() {
-            if(currentPage != 0) {
-                testPages[currentPage].main.style["display"] = "none";
-                testPages[currentPage-1].main.style["display"] = "block";
-                currentPage--;
-            }
+        if (popUpExists) hidePopUp();
+        if(currentPage != 0) {
+            testPages[currentPage].main.style["display"] = "none";
+            testPages[currentPage-1].main.style["display"] = "block";
+            currentPage--;
+        }
     }
 }   
