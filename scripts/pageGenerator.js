@@ -1,4 +1,5 @@
-currentPage = 0;
+let currentPage = 0;
+let popUpExists = false;
 class TestPageGen {
     constructor(pageNumber, display) {
         this.pageNumber = pageNumber;
@@ -138,6 +139,7 @@ class TestPageGen {
 
                     if(questions[page].questionList[i].correct){
                         label.style = "font-size:2dvh;color:green;display:block;";
+        
                     } else if (!questions[page].questionList[i].correct  && label.firstChild.checked) {
     
                         label.style = "font-size:2dvh;color:red;display:block;";
@@ -148,16 +150,24 @@ class TestPageGen {
                     label.firstChild.disabled = true;
                     
                 }if(page==questions.length-1) {
-                    this.bAnswer.innerHTML = "Finish test";
-                    this.displayButtonAnswer = "Finish test";
+                    this.bAnswer.innerHTML = "Show result";
+                    this.displayButtonAnswer = "Show result";
                 }else {
                     this.bAnswer.innerHTML = "Next question";
                     this.displayButtonAnswer = "Next question";
                 }
             }else if(this.displayButtonAnswer == "Next question") {
                 this.goForward();
-            } else if (this.displayButtonAnswer== "Finish test") {
-
+            } else if (this.displayButtonAnswer== "Show result") {
+                if (!popUpExists){
+                    console.log("popUp doest not exist. Create new one:" + popUpExists)
+                    createPopUp(finalScore);
+                    popUpExists = true;
+                } else {
+                    divMainPopUp.style["opacity"] = 1;
+                    divMainPopUp.style["z-index"] = 999;
+                }
+                
             }
            
     }
