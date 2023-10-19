@@ -100,6 +100,10 @@ class TestPageGen {
         this.buttonGoBack.appendChild(this.imgGoBack);
         this.buttonGoBack.style = "margin-right:100px; background-color:white;width:10vh;height:60px;cursor:pointer;border:none;"
         this.divButtons.appendChild(this.buttonGoBack);
+        if (this.pageNumber == 0) {
+            this.buttonGoBack.style["opacity"] = 0;
+            this.buttonGoBack.style["z-index"] = -2;
+        }
 
         this.bAnswer = document.createElement("button");
         this.bAnswer.type = "button";
@@ -107,7 +111,6 @@ class TestPageGen {
         this.bAnswer.innerHTML = "Show answer";
         this.bAnswer.style = "margin:0; background-color:white;max-width:300px;width:30dvh;min-width:100px; max-height:60px;height:10dvh;min-height:20px;cursor:pointer;"
         this.divButtons.appendChild(this.bAnswer);
-
 
         this.bGoForward = document.createElement("button");
         this.bGoForward.type="button";
@@ -118,6 +121,12 @@ class TestPageGen {
         this.bGoForward.appendChild(this.imgGoForward);
         this.bGoForward.style = "margin-left:100px;background-color:white;width:10vh;height:60px;cursor:pointer;border:none;"
         this.divButtons.appendChild(this.bGoForward);
+        if (this.pageNumber == questions.length-1) {
+            this.bGoForward.style["opacity"] = 0;
+            this.bGoForward.style["z-index"] = -2;
+        }
+
+
 
     }
     goForward() {
