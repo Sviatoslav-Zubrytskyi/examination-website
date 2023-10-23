@@ -26,21 +26,21 @@ class Question {
 
 const questions = [
     new Question(
-        '"Provides information about the performance of a system which can be used to modify its behaviour".</br></br> This is the definition of:', 
+        '"Provides information about the performance of a system which can be used to modify its behaviourProvides information about the performance of a system which can be used to modify its behaviourProvides information about the performance of a system which can be used to modify its behaviourProvides information about the performance of a system which can be used to modify its behaviourProvides information about the performance of a system which can be used to modify its behaviour".<br><br> This is the definition of:', 
         "Control mechanism", false,
         "Process",false, 
         "System objective",false,
         "Feedback mechanism", true
     ),
     new Question(
-        "Which of the following statement(s) about ERD is correct?</br></br>1) An ERD gives a high-level view of the detailed attributes of an entity</br>2) An ERD gives a data-focused view of the main data objects", 
+        "Which of the following statement(s) about ERD is correct?<br><br>1) An ERD gives a high-level view of the detailed attributes of an entity<br>2) An ERD gives a data-focused view of the main data objects", 
         "Only statement 1 is correct", false, 
         "Only statement 2 is correct", true, 
         "Both statements are incorrect", false, 
         "Both statements are correct", false
     ),
     new Question(
-        'The statement defines a Business information system.</br></br>Fill in the blanks with the best alternative to make the definition complete.</br></br>"A business information system is a group of interralated components that work collectively to carry out ...A() ... in order to convert data into information products that can be used to support ... B() ... in an organisation".', 
+        'The statement defines a Business information system.<br><br>Fill in the blanks with the best alternative to make the definition complete.<br><br>"A business information system is a group of interralated components that work collectively to carry out ...A() ... in order to convert data into information products that can be used to support ... B() ... in an organisation".', 
         "(A) analyses; (B) sales", false, 
         "(A) all sorts of actions; (B) tactical and operationalactivities", true, 
         "(A) transactions and calculations; (B) business decisions",false, 
@@ -82,7 +82,7 @@ const questions = [
         "Data conversion", false
     ),
     new Question(
-        "KISS stands for 'Keep IT Simple, Stupid. Many designers and developers adopt this principle.</br></br> Which statement about design is correct?",
+        "KISS stands for 'Keep IT Simple, Stupid. Many designers and developers adopt this principle.<br><br> Which statement about design is correct?",
         "Evaluation of different implementation methods is NOT part of the design", false,
         "While designing, only the present releases of software are relevant",false,
         "Design simply involves producing an architectural and detailed design",false,
@@ -103,14 +103,14 @@ const questions = [
         "Internet service provider", false
     ),
     new Question(
-        "BIS acquisition describes the method of obtaining an information system for a business.</br></br> The main choices for using this method of obtaining information are:</br>I) Purchasing off-the-shelf</br>II) Bespoke development</br>III) Application developed by an in-house IT department</br>IV).",
+        "BIS acquisition describes the method of obtaining an information system for a business.<br><br> The main choices for using this method of obtaining information are:<br>I) Purchasing off-the-shelf<br>II) Bespoke development<br>III) Application developed by an in-house IT department<br>IV).",
         "The systems development lifecycle (SDLC)", false,
         "User-developed software",true,
         "Waterfall method",false,
         "Scrum", false
     ),
     new Question(
-        "In client/server model, typical desktop PCs serve as the 'front-end' access point to business applications.</br></br>Which of the following statements is correct?",
+        "In client/server model, typical desktop PCs serve as the 'front-end' access point to business applications.<br><br>Which of the following statements is correct?",
         "A two-tier C/S offers better security than a three-tier C/S", false,
         "In a three-tier C/S, the second tier typically serves as the dara source",false,
         "Due to scalabillity, a three-tier system is preffered as compared to a two-tier C/S",true,

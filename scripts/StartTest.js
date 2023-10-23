@@ -8,7 +8,16 @@ questions.forEach((question) => {
     pageCount++;
 });
 
+
+
+
 function startTest() {
     testPages[0].main.style["display"] = "block";
     buttonStart.style = "display:none";
+    //generate left panel
+
+    divPanel.style["display"] = "block";
+    
+
+
 }
