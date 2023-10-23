@@ -137,8 +137,9 @@ class TestPageGen {
         this.divPQuesiton.style = "font-size: 1.5dvh;padding:15px 50px 15px 50px;background-color:white;cursor:pointer;"
         this.divPQuesiton.addEventListener("click", ()=>{
             console.log("clicked on q " + this.pageNumber);
-            testPages[this.pageNumber].main.style["display"] = "block";
             testPages[currentPage].main.style["display"] = "none";
+            testPages[this.pageNumber].main.style["display"] = "block";
+            
             currentPage = this.pageNumber;
         })
         divScroll.appendChild(this.divPQuesiton);
