@@ -20,7 +20,7 @@ else {
     if (time%60/10 >=1) {
         divLogo.innerHTML = "Time left: 0" + Math.floor(time/60) +":" + time%60;
     } else divLogo.innerHTML = "Time left: 0" + Math.floor(time/60) +":0" + time%60;
-}divLogo.innerHTML +="<br> Answered questions: " + answeredQuestions;
+}divLogo.innerHTML +="<br> Answered questions: " + answeredQuestions + "/" + questions.length;
 const timer = setInterval(()=>{
     time--;
     if (time == 0) {
@@ -37,7 +37,7 @@ const timer = setInterval(()=>{
             divLogo.innerHTML = "Time left: 0" + Math.floor(time/60) +":" + time%60;
         } else divLogo.innerHTML = "Time left: 0" + Math.floor(time/60) +":0" + time%60;
     }
-    divLogo.innerHTML +="<br> Answered questions: " + answeredQuestions;
+    divLogo.innerHTML +="<br> Answered questions: " + answeredQuestions + "/" + questions.length;
 }, 1000);
 divLogo.style = "line-height:4dvh;height:10%;font-size:2dvh;text-align:center;display:flex;align-items:center;justify-content:center;color:white;position:sticky;top:0;background-color:rgba(0,150,255,1);z-index:10;box-shadow:0 0 10px 0 black;"
 

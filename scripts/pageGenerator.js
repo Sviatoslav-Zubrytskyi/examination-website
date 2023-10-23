@@ -210,7 +210,7 @@ class TestPageGen {
                 if (time%60/10 >=1) {
                     divLogo.innerHTML = "Time left: 0" + Math.floor(time/60) +":" + time%60;
                 } else divLogo.innerHTML = "Time left: 0" + Math.floor(time/60) +":0" + time%60;
-            }divLogo.innerHTML += "<br> Answered questions: " + answeredQuestions;
+            }divLogo.innerHTML += "<br> Answered questions: " + answeredQuestions + "/" + questions.length;
     }
     goBack() {
         if (popUpExists) hidePopUp();
