@@ -26,7 +26,7 @@ class Question {
 
 const questions = [
     new Question(
-        '"Provides information about the performance of a system which can be used to modify its behaviourProvides information about the performance of a system which can be used to modify its behaviourProvides information about the performance of a system which can be used to modify its behaviourProvides information about the performance of a system which can be used to modify its behaviourProvides information about the performance of a system which can be used to modify its behaviour".<br><br> This is the definition of:', 
+        '"Provides information about the performance of a system which can be used to modify its behaviour"<br><br> This is the definition of:', 
         "Control mechanism", false,
         "Process",false, 
         "System objective",false,
