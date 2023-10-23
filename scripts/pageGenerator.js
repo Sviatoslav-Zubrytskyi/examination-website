@@ -97,7 +97,7 @@ class TestPageGen {
         this.buttonGoBack.type="button";
         this.buttonGoBack.addEventListener("click", this.goBack);
         this.imgGoBack = document.createElement("img");
-        this.imgGoBack.src= './src/';
+        this.imgGoBack.src= './src/GoBack.png';
         this.imgGoBack.style = "height:5vh;width:5vh;"
         this.buttonGoBack.appendChild(this.imgGoBack);
         this.buttonGoBack.style = "margin-right:5dvw; background-color:white;width:10vh;height:60px;cursor:pointer;border:none;"
