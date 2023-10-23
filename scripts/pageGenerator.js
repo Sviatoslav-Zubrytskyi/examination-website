@@ -1,7 +1,6 @@
 let currentPage = 0;
 let popUpExists = false;
 let finalScore = 0;
-let answeredQuestions = 0;
 class TestPageGen {
     constructor(pageNumber, display) {
         this.pageNumber = pageNumber;
@@ -201,7 +200,17 @@ class TestPageGen {
                 }
                 
             }
-           
+            
+            if (Math.floor(time/60).length == 2) {
+                if (str(time%60).length == 2) {
+                    divLogo.innerHTML = "Time left: " + Math.floor(time/60) +":" + time%6;;
+                } else divLogo.innerHTML = "Time left: " + Math.floor(time/60) +":0" + time%6;;
+            }
+            else {
+                if (time%60/10 >=1) {
+                    divLogo.innerHTML = "Time left: 0" + Math.floor(time/60) +":" + time%60;
+                } else divLogo.innerHTML = "Time left: 0" + Math.floor(time/60) +":0" + time%60;
+            }divLogo.innerHTML += "<br> Answered questions: " + answeredQuestions;
     }
     goBack() {
         if (popUpExists) hidePopUp();
