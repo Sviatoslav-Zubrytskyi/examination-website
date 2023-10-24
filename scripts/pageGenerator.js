@@ -135,12 +135,25 @@ class TestPageGen {
             this.divPQuesiton.innerHTML = (this.pageNumber+1) + ". " + questions[this.pageNumber].questionList.question.replace(/<br>.*$/, "");
         }
         this.divPQuesiton.style = "font-size: 1.5dvh;padding:15px 50px 15px 50px;background-color:white;cursor:pointer;"
+        if (this.pageNumber == 0) {
+            this.divPQuesiton.style["background-color"] = "#E6FFFF";
+        }
         this.divPQuesiton.addEventListener("click", ()=>{
             testPages[currentPage].main.style["display"] = "none";
+            testPages[currentPage].divPQuesiton.style["background-color"] = "white";
             testPages[this.pageNumber].main.style["display"] = "block";
-            
+            testPages[this.pageNumber].divPQuesiton.style["background-color"] = "#E6FFFF";
             currentPage = this.pageNumber;
         })
+        this.divPQuesiton.addEventListener("mouseover", ()=>{
+            if (this.pageNumber != currentPage) this.divPQuesiton.style["background-color"] = "#EBFAFA";
+            else this.divPQuesiton.style["background-color"] = "#D2FFFF";
+        })
+        this.divPQuesiton.addEventListener("mouseleave", ()=> {
+            if (this.pageNumber != currentPage) this.divPQuesiton.style["background-color"] = "white";
+            else this.divPQuesiton.style["background-color"] = "#E6FFFF";
+        })
+        
         divScroll.appendChild(this.divPQuesiton);
 
 
