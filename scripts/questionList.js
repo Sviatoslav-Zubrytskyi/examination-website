@@ -116,4 +116,18 @@ const questions = [
         "Due to scalabillity, a three-tier system is preffered as compared to a two-tier C/S",true,
         "A two-tier C/S occasionally called a 'thin-client' model", false
     ),
+    new Question(
+        '"Provides information about the performance of a system which can be used to modify its behaviour"<br><br> This is the definition of:', 
+        "Control mechanism", false,
+        "Process",false, 
+        "System objective",false,
+        "Feedback mechanism", true
+    ),
+    new Question(
+        '"Provides information about the performance of a system which can be used to modify its behaviour"<br><br> This is the definition of:', 
+        "Control mechanism", false,
+        "Process",false, 
+        "System objective",false,
+        "Feedback mechanism", true
+    ),
 ];

@@ -129,32 +129,54 @@ class TestPageGen {
         }
 
         this.divPQuesiton = document.createElement("div");
+
+
         if (questions[this.pageNumber].questionList.question.replace(/<br>.*$/, "...").length > 150 ) {
             this.divPQuesiton.innerHTML = (this.pageNumber+1) + ". " + questions[this.pageNumber].questionList.question.replace(/<br>.*$/, "").slice(0,150) + "...";
         } else {
             this.divPQuesiton.innerHTML = (this.pageNumber+1) + ". " + questions[this.pageNumber].questionList.question.replace(/<br>.*$/, "");
         }
-        this.divPQuesiton.style = "font-size: 1.5dvh;padding:15px 50px 15px 50px;background-color:white;cursor:pointer;"
+        this.divPQuesiton.style = "font-size: 1.5dvh;padding:15px 1dvw 15px 3dvw;background-color:white;cursor:pointer;position:relative;"
         if (this.pageNumber == 0) {
-            this.divPQuesiton.style["background-color"] = "#E6FFFF";
+            this.divPQuesiton.style["background-color"] = "rgba(232,244,252)";
         }
+        divScroll.appendChild(this.divPQuesiton);
+        this.bCircle = document.createElement("div");
+        this.bCircle.style = "position:absolute; top:18%;left:1vw;width:0.5dvw;height:0.5dvw;background-color:blue;border-radius:0.8dvw"
+
+        this.divPQuesiton.appendChild(this.bCircle);
+
+        this.checkMark = document.createElement("img");
+        this.checkMark.src = "./src/checkmark.png";
+       
+        this.checkMark.style = "position:absolute; top:16%;left:1vw;width:1dvw;height:1dvw;z-index:-1;"
+        this.divPQuesiton.appendChild(this.checkMark);
+
+        this.Xwrong = document.createElement("img");
+        this.Xwrong.src = "./src/X.png";
+       
+        this.Xwrong.style = "position:absolute; top:16%;left:1vw;width:1dvw;height:1dvw;z-index:-1;"
+        this.divPQuesiton.appendChild(this.Xwrong);
+
         this.divPQuesiton.addEventListener("click", ()=>{
             testPages[currentPage].main.style["display"] = "none";
             testPages[currentPage].divPQuesiton.style["background-color"] = "white";
             testPages[this.pageNumber].main.style["display"] = "block";
-            testPages[this.pageNumber].divPQuesiton.style["background-color"] = "#E6FFFF";
+            testPages[this.pageNumber].divPQuesiton.style["background-color"] = "rgba(232,244,252,0.9)";
             currentPage = this.pageNumber;
         })
         this.divPQuesiton.addEventListener("mouseover", ()=>{
-            if (this.pageNumber != currentPage) this.divPQuesiton.style["background-color"] = "#EBFAFA";
-            else this.divPQuesiton.style["background-color"] = "#D2FFFF";
+            if (this.pageNumber != currentPage) this.divPQuesiton.style["background-color"] = "rgba(232,244,252,0.9)";
+            else this.divPQuesiton.style["background-color"] = "rgba(232,244,252,0.9)";
         })
         this.divPQuesiton.addEventListener("mouseleave", ()=> {
             if (this.pageNumber != currentPage) this.divPQuesiton.style["background-color"] = "white";
-            else this.divPQuesiton.style["background-color"] = "#E6FFFF";
+            else this.divPQuesiton.style["background-color"] = "rgb(232,244,252)";
         })
         
-        divScroll.appendChild(this.divPQuesiton);
+
+
+
 
 
     }
@@ -170,11 +192,15 @@ class TestPageGen {
             const labels = [this.label1,this.label2, this.label3, this.label4];
             const checkBoxes = [this.q1,this.q2,this.q3,this.q4];
             if (this.displayButtonAnswer == "answer") {
+                this.bCircle.style["z-index"] = "-1";
+                this.Xwrong.style["z-index"] = 2;
                 answeredQuestions++;
                 for (const [i, label] of labels.entries()){
 
                     if (questions[page].questionList[i].correct  && label.firstChild.checked){
                         finalScore++;
+                        this.checkMark.style["z-index"] = "2";
+                        this.Xwrong.style["z-index"] = "-1"
                     }
 
                     if(questions[page].questionList[i].correct){
@@ -189,13 +215,17 @@ class TestPageGen {
     
                     label.firstChild.disabled = true;
                     
-                }if(page==questions.length-1) {
+                }
+                if(page==questions.length-1) {
                     this.bAnswer.innerHTML = "Show result";
                     this.displayButtonAnswer = "Show result";
                 }else {
                     this.bAnswer.innerHTML = "Next question";
                     this.displayButtonAnswer = "Next question";
                 }
+
+                
+
             }else if(this.displayButtonAnswer == "Next question") {
                 this.goForward();
             } else if (this.displayButtonAnswer== "Show result") {
