@@ -40,12 +40,12 @@ class TestPageGen {
 
         this.label1 = document.createElement("label");
         this.form.appendChild(this.label1);
-        this.label1.style = "font-size:2dvh;display:block;"
+        this.label1.style = "font-size:2dvh;display:block;cursor:pointer;transition: all 250ms ease-in-out;"
         this.q1 = document.createElement("input");
         this.q1.type = "radio";
         this.q1.setAttribute("name", "q");
         this.q1.setAttribute("checked", true);
-        this.q1.style = "display:inline-block; ";
+        this.q1.style = "transition: all 250ms ease-in-out;display:inline-block;cursor:pointer;";
         this.q1.setAttribute("id", "q1");
         //this.q1.disabled = true;
 
@@ -56,40 +56,40 @@ class TestPageGen {
 
         this.label2 = document.createElement("label");
         this.form.appendChild(this.label2);
-        this.label2.style = "font-size:2dvh;display:block;"
+        this.label2.style = "font-size:2dvh;display:block;cursor:pointer;"
         this.q2 = document.createElement("input");
         this.q2.type = "radio";
         this.q2.setAttribute("id", "q2");
         
         this.label2.for = this.q2.id;
         this.q2.setAttribute("name", "q");
-        this.q2.style = "display:inline-block; "
+        this.q2.style = "transition: all 250ms  ease-in-out;display:inline-block;cursor:pointer; "
         this.label2.appendChild(this.q2);
         this.label2.innerHTML += questions[this.pageNumber].questionList[1].answer;
 
         this.label3 = document.createElement("label");
         this.form.appendChild(this.label3);
-        this.label3.style = "font-size:2dvh;display:block;"
+        this.label3.style = "font-size:2dvh;display:block;cursor:pointer;"
         this.q3 = document.createElement("input");
         this.q3.type = "radio";
         this.q3.setAttribute("name", "q");
         this.q3.setAttribute("id", "q3");
         
         this.label3.for = this.q3.id;
-        this.q3.style = "display:inline-block; "
+        this.q3.style = "transition: all 250ms ease-in-out;display:inline-block; cursor:pointer;"
         this.label3.appendChild(this.q3);
         this.label3.innerHTML += questions[this.pageNumber].questionList[2].answer;
 
         this.label4 = document.createElement("label");
         this.form.appendChild(this.label4);
-        this.label4.style = "font-size:2dvh;display:block;"
+        this.label4.style = "transition: all 250ms  ease-in-out;font-size:2dvh;display:block;cursor:pointer;"
         this.q4 = document.createElement("input");
         this.q4.type = "radio";
         this.q4.setAttribute("name", "q");
         this.q4.setAttribute("id", "q4");
         
         this.label4.for = this.q4.id;
-        this.q4.style = "display:inline-block; "
+        this.q4.style = "display:inline-block; cursor:pointer;"
         this.q4 = this.label4.appendChild(this.q4);
         this.label4.innerHTML += questions[this.pageNumber].questionList[3].answer;
 
@@ -142,20 +142,20 @@ class TestPageGen {
         }
         divScroll.appendChild(this.divPQuesiton);
         this.bCircle = document.createElement("div");
-        this.bCircle.style = "position:absolute; top:18%;left:1vw;width:0.5dvw;height:0.5dvw;background-color:blue;border-radius:0.8dvw"
+        this.bCircle.style = "position:absolute; top:18%;left:1vw;width:0.5dvw;height:0.5dvw;background-color:blue;border-radius:0.8dvw;transition: all 250ms ease-in-out;"
 
         this.divPQuesiton.appendChild(this.bCircle);
 
         this.checkMark = document.createElement("img");
         this.checkMark.src = "./src/checkmark.png";
        
-        this.checkMark.style = "position:absolute; top:16%;left:1vw;width:1dvw;height:1dvw;z-index:-1;"
+        this.checkMark.style = "position:absolute; top:16%;left:1vw;width:1dvw;height:1dvw;opacity:0;transition: opacity 250ms ease-in-out"
         this.divPQuesiton.appendChild(this.checkMark);
 
         this.Xwrong = document.createElement("img");
         this.Xwrong.src = "./src/X.png";
        
-        this.Xwrong.style = "position:absolute; top:16%;left:1vw;width:1dvw;height:1dvw;z-index:-1;"
+        this.Xwrong.style = "position:absolute; top:16%;left:1vw;width:1dvw;height:1dvw;opacity:0;transition: opacity 250ms ease-in-out;"
         this.divPQuesiton.appendChild(this.Xwrong);
 
         this.divPQuesiton.addEventListener("click", ()=>{
@@ -193,14 +193,14 @@ class TestPageGen {
             const checkBoxes = [this.q1,this.q2,this.q3,this.q4];
             if (this.displayButtonAnswer == "answer") {
                 this.bCircle.style["z-index"] = "-1";
-                this.Xwrong.style["z-index"] = 2;
+                this.Xwrong.style["opacity"] = "1";
                 answeredQuestions++;
                 for (const [i, label] of labels.entries()){
 
                     if (questions[page].questionList[i].correct  && label.firstChild.checked){
                         finalScore++;
-                        this.checkMark.style["z-index"] = "2";
-                        this.Xwrong.style["z-index"] = "-1"
+                        this.checkMark.style["opacity"] = 1;
+                        this.Xwrong.style["z-index"] = "-1";
                     }
 
                     if(questions[page].questionList[i].correct){
@@ -214,6 +214,7 @@ class TestPageGen {
                     }
     
                     label.firstChild.disabled = true;
+                    label.firstChild.style["cursor"] = "not-allowed"
                     
                 }
                 if(page==questions.length-1) {
