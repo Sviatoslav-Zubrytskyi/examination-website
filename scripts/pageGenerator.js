@@ -11,8 +11,8 @@ class TestPageGen {
     newTestPage() {
         
         this.main = document.createElement("main");
-        this.main.setAttribute("id", "main")
-        document.body.appendChild(this.main)
+        this.main.setAttribute("id", "main");
+        document.body.appendChild(this.main);
         this.main.style = "height:65dvh;max-height:690px;min-height:200px;max-width:1100px;min-width:200px;width:60dvw;position:absolute;top:30%;transform: translateY(-50%);transform: translateX(-50%);left:60%;display:" + this.display;
 
         this.h1Count = document.createElement("h1");
@@ -40,19 +40,25 @@ class TestPageGen {
 
         this.label1 = document.createElement("label");
         this.form.appendChild(this.label1);
-        let labStyle = "font-size:2dvh;display:block;cursor:pointer;";
+        let labStyle = "font-size:2dvh;display:block;cursor:pointer;position:relative;padding-left:1.5dvw;";
         this.label1.style = labStyle;
         this.q1 = document.createElement("input");
         this.q1.type = "radio";
         this.q1.setAttribute("name", "q");
         this.q1.setAttribute("checked", true);
-        let qStyle = "width:1.8dvh;height:1.8dvh;transition:.3s;display:inline-block;cursor:pointer;border:2px solid red; aspect-ratio: 1;"
+        let qStyle = "display:none;";
         this.q1.style = qStyle;
         this.q1.setAttribute("id", "q1");
-        //this.q1.disabled = true;
 
+        this.span1 = document.createElement("span");
+        let sStyle = "position:absolute;left:0;top:0.25dvh;width:0.8dvw;height:0.8dvw;transition:.3s;display:inline-block;cursor:pointer;border:2.5px solid #00AEEF; aspect-ratio: 1;border-radius:50%;margin-right:5px;";
+        this.span1.style = sStyle;
+        
+        
+        
         this.label1.for = this.q1.id;
         this.label1.appendChild(this.q1);
+        this.label1.appendChild(this.span1);
         this.label1.innerHTML += questions[this.pageNumber].questionList[0].answer;
 
 
@@ -62,11 +68,15 @@ class TestPageGen {
         this.q2 = document.createElement("input");
         this.q2.type = "radio";
         this.q2.setAttribute("id", "q2");
+
+        this.span2 = document.createElement("span");
+        this.span2.style = sStyle;
         
         this.label2.for = this.q2.id;
         this.q2.setAttribute("name", "q");
         this.q2.style = qStyle;
         this.label2.appendChild(this.q2);
+        this.label2.appendChild(this.span2);
         this.label2.innerHTML += questions[this.pageNumber].questionList[1].answer;
 
         this.label3 = document.createElement("label");
@@ -76,10 +86,14 @@ class TestPageGen {
         this.q3.type = "radio";
         this.q3.setAttribute("name", "q");
         this.q3.setAttribute("id", "q3");
+
+        this.span3 = document.createElement("span");
+        this.span3.style = sStyle;
         
         this.label3.for = this.q3.id;
         this.q3.style = qStyle;
         this.label3.appendChild(this.q3);
+        this.label3.appendChild(this.span3);
         this.label3.innerHTML += questions[this.pageNumber].questionList[2].answer;
 
         this.label4 = document.createElement("label");
@@ -89,10 +103,14 @@ class TestPageGen {
         this.q4.type = "radio";
         this.q4.setAttribute("name", "q");
         this.q4.setAttribute("id", "q4");
+
+        this.span4 = document.createElement("span");
+        this.span4.style = sStyle;
         
         this.label4.for = this.q4.id;
         this.q4.style = qStyle;
         this.q4 = this.label4.appendChild(this.q4);
+        this.label4.appendChild(this.span4);
         this.label4.innerHTML += questions[this.pageNumber].questionList[3].answer;
 
         this.buttonGoBack = document.createElement("button");
@@ -100,9 +118,9 @@ class TestPageGen {
         this.buttonGoBack.addEventListener("click", this.goBack);
         this.imgGoBack = document.createElement("img");
         this.imgGoBack.src= './src/GoBack.png';
-        this.imgGoBack.style = "height:5vh;width:5vh;aspect-ratio: 1;"
+        this.imgGoBack.style = "height:5vh;width:5vh;aspect-ratio: 1;";
         this.buttonGoBack.appendChild(this.imgGoBack);
-        this.buttonGoBack.style = "margin-right:5dvw; background-color:white;width:10vh;height:60px;cursor:pointer;border:none;"
+        this.buttonGoBack.style = "margin-right:5dvw; background-color:white;width:10vh;height:60px;cursor:pointer;border:none;";
         this.divButtons.appendChild(this.buttonGoBack);
         if (this.pageNumber == 0) {
             this.buttonGoBack.style["opacity"] = 0;
@@ -113,7 +131,7 @@ class TestPageGen {
         this.bAnswer.type = "button";
         this.bAnswer.addEventListener("click", () => this.answer(this.pageNumber));
         this.bAnswer.innerHTML = "Show answer";
-        this.bAnswer.style = "font-size:2dvh;margin:0; background-color:white;max-width:300px;width:30dvh;min-width:50px; max-height:60px;height:10dvh;min-height:10px;cursor:pointer;"
+        this.bAnswer.style = "font-size:2dvh;margin:0; background-color:white;max-width:300px;width:30dvh;min-width:50px; max-height:60px;height:10dvh;min-height:10px;cursor:pointer;";
         this.divButtons.appendChild(this.bAnswer);
 
         this.bGoForward = document.createElement("button");
@@ -121,9 +139,9 @@ class TestPageGen {
         this.bGoForward.addEventListener("click", this.goForward);
         this.imgGoForward = document.createElement("img");
         this.imgGoForward.src= './src/goForward.png';
-        this.imgGoForward.style = "height:5vh;width:5vh;"
+        this.imgGoForward.style = "height:5vh;width:5vh;";
         this.bGoForward.appendChild(this.imgGoForward);
-        this.bGoForward.style = "margin-left:5dvw;background-color:white;width:10vh;height:60px;cursor:pointer;border:none;"
+        this.bGoForward.style = "margin-left:5dvw;background-color:white;width:10vh;height:60px;cursor:pointer;border:none;";
         this.divButtons.appendChild(this.bGoForward);
         if (this.pageNumber == questions.length-1) {
             this.bGoForward.style["opacity"] = 0;
@@ -138,26 +156,26 @@ class TestPageGen {
         } else {
             this.divPQuesiton.innerHTML = (this.pageNumber+1) + ". " + questions[this.pageNumber].questionList.question.replace(/<br>.*$/, "");
         }
-        this.divPQuesiton.style = "font-size: 1.5dvh;padding:15px 1dvw 15px 3dvw;background-color:white;cursor:pointer;position:relative;"
+        this.divPQuesiton.style = "font-size: 1.5dvh;padding:15px 1dvw 15px 3dvw;background-color:white;cursor:pointer;position:relative;";
         if (this.pageNumber == 0) {
             this.divPQuesiton.style["background-color"] = "rgba(232,244,252)";
         }
         divScroll.appendChild(this.divPQuesiton);
-        this.bCircle = document.createElement("div");
-        this.bCircle.style = "aspect-ratio: 1;position:absolute; top:18%;left:1vw;width:0.5dvw;height:0.5dvw;background-color:blue;border-radius:0.8dvw;transition: all 250ms ease-in-out;"
+        this.bCircle = document.createElement("span");
+        this.bCircle.style = "aspect-ratio: 1;position:absolute; top:18%;left:1vw;width:0.5dvw;height:0.5dvw;background-color:blue;border-radius:0.8dvw;transition: all 250ms ease-in-out;";
 
         this.divPQuesiton.appendChild(this.bCircle);
 
         this.checkMark = document.createElement("img");
         this.checkMark.src = "./src/checkmark.png";
        
-        this.checkMark.style = "position:absolute; top:16%;left:1vw;width:1dvw;height:1dvw;opacity:0;transition: opacity 250ms ease-in-out;aspect-ratio: 1;"
+        this.checkMark.style = "position:absolute; top:16%;left:1vw;width:1dvw;height:1dvw;opacity:0;transition: opacity 250ms ease-in-out;aspect-ratio: 1;";
         this.divPQuesiton.appendChild(this.checkMark);
 
         this.Xwrong = document.createElement("img");
         this.Xwrong.src = "./src/X.png";
        
-        this.Xwrong.style = "position:absolute; top:16%;left:1vw;width:1dvw;height:1dvw;opacity:0;transition: opacity 250ms ease-in-out;aspect-ratio: 1;"
+        this.Xwrong.style = "position:absolute; top:16%;left:1vw;width:1dvw;height:1dvw;opacity:0;transition: opacity 250ms ease-in-out;aspect-ratio: 1;";
         this.divPQuesiton.appendChild(this.Xwrong);
 
         this.divPQuesiton.addEventListener("click", ()=>{
@@ -204,15 +222,14 @@ class TestPageGen {
                         this.checkMark.style["opacity"] = 1;
                         this.Xwrong.style["z-index"] = "-1";
                     }
-
                     if(questions[page].questionList[i].correct){
-                        label.style = "font-size:2dvh;color:green;display:block;";
+                        label.style["color"] = "green";
         
                     } else if (!questions[page].questionList[i].correct  && label.firstChild.checked) {
     
-                        label.style = "font-size:2dvh;color:red;display:block;";
+                        label.style["color"] = "red";
                     } else {
-                        label.style = "font-size:2dvh;color:gray;display:block;";
+                        label.style["color"] = "gray";
                     }
     
                     label.firstChild.disabled = true;
@@ -239,7 +256,7 @@ class TestPageGen {
                     divMainPopUp.style["opacity"] = 1;
                     divMainPopUp.style["z-index"] = 999;
                 }
-                if (answeredQuestions == questions.length){
+                if (answeredQuestions == questions.length || time ==0){
                     pPopUp.innerHTML = "Your score: " + finalScore + "/" + questions.length;
                 } else {
                     pPopUp.innerHTML = "Answer all the questions first";
