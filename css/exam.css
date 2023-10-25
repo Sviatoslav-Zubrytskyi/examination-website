@@ -1,0 +1,28 @@
+:root{
+    --color:rgba(0,0,0,0.3);
+}
+
+label::before {
+    content:"";
+    width:90%;
+    height: 100%;
+    left:2dvw;
+    position: absolute;
+    border-bottom:rgba(0,0,0,0.1) solid 1px;
+}
+span.radio::before {
+    content:"";
+    position: absolute;
+    height: 0.7dvw;
+    width:0.7dvw;
+    border-radius: 50%;
+    background-color: var(--color);
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%) scale(0) ;
+    display:block;
+    transition: 300ms ease-in-out 0s;
+}
+input[type="radio"]:checked ~ span.radio::before {
+    transform: translate(-50%, -50%) scale(1);
+}

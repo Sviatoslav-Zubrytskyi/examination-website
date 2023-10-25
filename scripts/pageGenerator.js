@@ -33,14 +33,14 @@ class TestPageGen {
         this.divQuestion.appendChild(this.form);
 
         this.h2Q = document.createElement("h2");
-        this.h2Q.style = "margin-botton:10px;padding:0;font-size:2dvh;"
+        this.h2Q.style = "margin-bottom:5dvh;padding:0;font-size:2dvh;"
         this.form.appendChild(this.h2Q);
         this.h2Q.innerHTML = questions[this.pageNumber].questionList.question;
 
 
         this.label1 = document.createElement("label");
         this.form.appendChild(this.label1);
-        let labStyle = "font-size:2dvh;display:block;cursor:pointer;position:relative;padding-left:1.5dvw;";
+        let labStyle = "font-size:2dvh;display:block;cursor:pointer;position:relative;padding-left:2dvw;padding-bottom:0.5dvh;margin-bottom:2dvh;";
         this.label1.style = labStyle;
         this.q1 = document.createElement("input");
         this.q1.type = "radio";
@@ -51,8 +51,10 @@ class TestPageGen {
         this.q1.setAttribute("id", "q1");
 
         this.span1 = document.createElement("span");
-        let sStyle = "position:absolute;left:0;top:0.25dvh;width:0.8dvw;height:0.8dvw;transition:.3s;display:inline-block;cursor:pointer;border:2.5px solid #00AEEF; aspect-ratio: 1;border-radius:50%;margin-right:5px;";
+        this.span1.setAttribute("class", "radio");
+        let sStyle = "position:absolute;left:0;top:0.1dvh;width:1.2dvw;height:1.2dvw;transition:.3s;display:inline-block;cursor:pointer;border:2.5px solid rgba(0,0,0,0.3); aspect-ratio: 1;border-radius:50%;";
         this.span1.style = sStyle;
+        this.pseudo = document.createpsudoelement 
         
         
         
@@ -70,6 +72,7 @@ class TestPageGen {
         this.q2.setAttribute("id", "q2");
 
         this.span2 = document.createElement("span");
+        this.span2.setAttribute("class", "radio");
         this.span2.style = sStyle;
         
         this.label2.for = this.q2.id;
@@ -88,6 +91,7 @@ class TestPageGen {
         this.q3.setAttribute("id", "q3");
 
         this.span3 = document.createElement("span");
+        this.span3.setAttribute("class", "radio");
         this.span3.style = sStyle;
         
         this.label3.for = this.q3.id;
@@ -105,6 +109,7 @@ class TestPageGen {
         this.q4.setAttribute("id", "q4");
 
         this.span4 = document.createElement("span");
+        this.span4.setAttribute("class", "radio");
         this.span4.style = sStyle;
         
         this.label4.for = this.q4.id;
@@ -210,7 +215,9 @@ class TestPageGen {
     answer(page) {
             
             const labels = [this.label1,this.label2, this.label3, this.label4];
-            const checkBoxes = [this.q1,this.q2,this.q3,this.q4];
+            console.log(this.label1.children[1]);
+            
+            
             if (this.displayButtonAnswer == "answer") {
                 this.bCircle.style["z-index"] = "-1";
                 this.Xwrong.style["opacity"] = "1";
@@ -234,8 +241,12 @@ class TestPageGen {
     
                     label.firstChild.disabled = true;
                     label.firstChild.style["cursor"] = "not-allowed"
+                    //label.children[1].style["border-color"] = "rgba(0,0,0,0.3)";
+                    
+
                     
                 }
+                
                 if(page==questions.length-1) {
                     this.bAnswer.innerHTML = "Show result";
                     this.displayButtonAnswer = "Show result";
