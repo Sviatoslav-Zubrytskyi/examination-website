@@ -103,7 +103,7 @@ const questions = [
         "Internet service provider", false
     ),
     new Question(
-        "BIS acquisition describes the method of obtaining an information system for a business.<br><br> The main choices for using this method of obtaining information are:<br>I) Purchasing off-the-shelf<br>II) Bespoke development<br>III) Application developed by an in-house IT department<br>IV).",
+        "BIS acquisition describes the method of obtaining an information system for a business.<br><br> The main choices for using this method of obtaining information are:<br>I) Purchasing off-the-shelf<br>II) Bespoke development<br>III) Application developed by an in-house IT department<br>IV).<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>14<br>15<br>16<br>17<br>14<br>15<br>16<br>17<br>14<br>15<br>16<br>17",
         "The systems development lifecycle (SDLC)", false,
         "User-developed software",true,
         "Waterfall method",false,

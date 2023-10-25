@@ -1,6 +1,7 @@
 let currentPage = 0;
 let popUpExists = false;
 let finalScore = 0;
+document.body.style = "margin:0;background-color:rgba(0,0,0,0.01);display:flex;"
 class TestPageGen {
     constructor(pageNumber, display) {
         this.pageNumber = pageNumber;
@@ -13,33 +14,34 @@ class TestPageGen {
         this.main = document.createElement("main");
         this.main.setAttribute("id", "main");
         document.body.appendChild(this.main);
-        this.main.style = "height:65dvh;max-height:690px;min-height:200px;max-width:1100px;min-width:200px;width:60dvw;position:absolute;top:30%;transform: translateY(-50%);transform: translateX(-50%);left:60%;display:" + this.display;
+        this.main.style = "overflow-y:scroll;height:100dvh;width:80dvw;position:relative;flex-direction:column; justify-content:center;align-items:center;display:" + this.display;
+        
 
         this.h1Count = document.createElement("h1");
         this.h1Count.innerHTML = "Question " + (this.pageNumber+1) + "/"+questions.length;
         this.h1Count.style = "text-align:center;height:5vh";
-        this.main.appendChild(this.h1Count)
-
+        
         this.divQuestion = document.createElement("div");
-        this.divQuestion.style = "height:60%;max-height:500px;min-height:200px;max-width:100%;min-width:700px;width:60dvw;margin:0;padding:0 20px 0 20px;";
+        this.divQuestion.style = "min-height:200px;width:100%;min-width:700px;width:60dvw;margin:0;padding:0 20px 0 20px;";
         this.main.appendChild(this.divQuestion);
+        this.divQuestion.appendChild(this.h1Count)
 
         this.divButtons = document.createElement("div");
         this.divButtons.style ="display:flex; height:20%;width:100%; justify-content:center; align-items:center;gap:auto";
         this.main.appendChild(this.divButtons);
 
-        this.form = document.createElement("form");
-        this.form.style = "width:100%;height:100%;margin:0;padding:0;";
-        this.divQuestion.appendChild(this.form);
+        // this.form = document.createElement("form");
+        // this.form.style = "width:100%;height:100%;margin:0;padding:0;";
+        // this.divQuestion.appendChild(this.form);
 
         this.h2Q = document.createElement("h2");
         this.h2Q.style = "margin-bottom:5dvh;padding:0;font-size:2dvh;"
-        this.form.appendChild(this.h2Q);
+        this.divQuestion.appendChild(this.h2Q);
         this.h2Q.innerHTML = questions[this.pageNumber].questionList.question;
 
 
         this.label1 = document.createElement("label");
-        this.form.appendChild(this.label1);
+        this.divQuestion.appendChild(this.label1);
         let labStyle = "font-size:2dvh;display:block;cursor:pointer;position:relative;padding-left:2dvw;padding-bottom:0.5dvh;margin-bottom:2dvh;";
         this.label1.style = labStyle;
         this.q1 = document.createElement("input");
@@ -65,7 +67,7 @@ class TestPageGen {
 
 
         this.label2 = document.createElement("label");
-        this.form.appendChild(this.label2);
+        this.divQuestion.appendChild(this.label2);
         this.label2.style = labStyle;
         this.q2 = document.createElement("input");
         this.q2.type = "radio";
@@ -83,7 +85,7 @@ class TestPageGen {
         this.label2.innerHTML += questions[this.pageNumber].questionList[1].answer;
 
         this.label3 = document.createElement("label");
-        this.form.appendChild(this.label3);
+        this.divQuestion.appendChild(this.label3);
         this.label3.style = labStyle;
         this.q3 = document.createElement("input");
         this.q3.type = "radio";
@@ -101,7 +103,7 @@ class TestPageGen {
         this.label3.innerHTML += questions[this.pageNumber].questionList[2].answer;
 
         this.label4 = document.createElement("label");
-        this.form.appendChild(this.label4);
+        this.divQuestion.appendChild(this.label4);
         this.label4.style = labStyle;
         this.q4 = document.createElement("input");
         this.q4.type = "radio";
@@ -186,7 +188,7 @@ class TestPageGen {
         this.divPQuesiton.addEventListener("click", ()=>{
             testPages[currentPage].main.style["display"] = "none";
             testPages[currentPage].divPQuesiton.style["background-color"] = "white";
-            testPages[this.pageNumber].main.style["display"] = "block";
+            testPages[this.pageNumber].main.style["display"] = "flex";
             testPages[this.pageNumber].divPQuesiton.style["background-color"] = "rgba(232,244,252,0.9)";
             currentPage = this.pageNumber;
         })
@@ -199,16 +201,12 @@ class TestPageGen {
             else this.divPQuesiton.style["background-color"] = "rgb(232,244,252)";
         })
         
-
-
-
-
-
     }
+    
     goForward() {
         if(currentPage != questions.length-1) {
             testPages[currentPage].main.style["display"] = "none";
-            testPages[currentPage+1].main.style["display"] = "block";
+            testPages[currentPage+1].main.style["display"] = "flex";
             currentPage++;
         }
     }
@@ -291,7 +289,7 @@ class TestPageGen {
         if (popUpExists) hidePopUp();
         if(currentPage != 0) {
             testPages[currentPage].main.style["display"] = "none";
-            testPages[currentPage-1].main.style["display"] = "block";
+            testPages[currentPage-1].main.style["display"] = "flex";
             currentPage--;
         }
     }

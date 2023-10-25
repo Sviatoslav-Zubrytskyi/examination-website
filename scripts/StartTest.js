@@ -12,12 +12,7 @@ questions.forEach((question) => {
 
 
 function startTest() {
-    testPages[0].main.style["display"] = "block";
+    testPages[0].main.style["display"] = "flex";
     buttonStart.style = "display:none";
-    //generate left panel
-
     divPanel.style["display"] = "block";
-    
-
-
 }
