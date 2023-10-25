@@ -215,7 +215,6 @@ class TestPageGen {
     answer(page) {
             
             const labels = [this.label1,this.label2, this.label3, this.label4];
-            console.log(this.label1.children[1]);
             
             
             if (this.displayButtonAnswer == "answer") {
@@ -241,7 +240,6 @@ class TestPageGen {
     
                     label.firstChild.disabled = true;
                     label.firstChild.style["cursor"] = "not-allowed"
-                    //label.children[1].style["border-color"] = "rgba(0,0,0,0.3)";
                     
 
                     
@@ -266,6 +264,8 @@ class TestPageGen {
                 } else {
                     divMainPopUp.style["opacity"] = 1;
                     divMainPopUp.style["z-index"] = 999;
+                    bPopUp.style["opacity"] = 1;
+                    bPopUp.style["z-index"] = 998;
                 }
                 if (answeredQuestions == questions.length || time ==0){
                     pPopUp.innerHTML = "Your score: " + finalScore + "/" + questions.length;
@@ -275,6 +275,7 @@ class TestPageGen {
                 
             }
             
+
             if (Math.floor(time/60).length == 2) {
                 if (str(time%60).length == 2) {
                     divLogo.innerHTML = "Time left: " + Math.floor(time/60) +":" + time%6;;
