@@ -2,6 +2,7 @@ let currentPage = 0;
 let popUpExists = false;
 let finalScore = 0;
 document.body.style = "margin:0;background-color:rgba(0,0,0,0.01);display:flex;"
+document.body.style.overflow = 'hidden';
 class TestPageGen {
     constructor(pageNumber, display) {
         this.pageNumber = pageNumber;
@@ -14,20 +15,25 @@ class TestPageGen {
         this.main = document.createElement("main");
         this.main.setAttribute("id", "main");
         document.body.appendChild(this.main);
-        this.main.style = "overflow-y:scroll;height:100dvh;width:80dvw;position:relative;flex-direction:column; justify-content:center;align-items:center;display:" + this.display;
+        this.main.style = "overflow-y:scroll;height:100dvh;width:80dvw;position:relative;flex-direction:column;align-items:center;display:" + this.display;
         
 
         this.h1Count = document.createElement("h1");
         this.h1Count.innerHTML = "Question " + (this.pageNumber+1) + "/"+questions.length;
         this.h1Count.style = "text-align:center;height:5vh";
         
+        this.maarginBotDiv = document.createElement("div");
+        this.maarginBotDiv.style="width:100%;margin-bottom:50dvh;"
+        //this.main.appendChild(this.maarginBotDiv); 
+
+
         this.divQuestion = document.createElement("div");
-        this.divQuestion.style = "min-height:200px;width:100%;min-width:700px;width:60dvw;margin:0;padding:0 20px 0 20px;";
+        this.divQuestion.style = "width:100%;min-width:700px;width:60dvw;margin:10% 0 0;padding:0 20px 0 20px;";
         this.main.appendChild(this.divQuestion);
         this.divQuestion.appendChild(this.h1Count)
 
         this.divButtons = document.createElement("div");
-        this.divButtons.style ="display:flex; height:20%;width:100%; justify-content:center; align-items:center;gap:auto";
+        this.divButtons.style ="display:flex; height:20%;width:100%; justify-content:center; align-items:center;gap:auto; margin:0 0 20%";
         this.main.appendChild(this.divButtons);
 
         // this.form = document.createElement("form");
