@@ -1,7 +1,7 @@
 let currentPage = 0;
 let popUpExists = false;
 let finalScore = 0;
-document.body.style = "margin:0;background-color:rgba(0,0,0,0.01);display:flex;"
+document.body.style = "margin:0;"
 document.body.style.overflow = 'hidden';
 class TestPageGen {
     constructor(pageNumber, display) {
@@ -11,24 +11,25 @@ class TestPageGen {
     }
 
     newTestPage() {
-        
         this.main = document.createElement("main");
         this.main.setAttribute("id", "main");
-        document.body.appendChild(this.main);
+        content.appendChild(this.main);
         this.main.style = "overflow-y:scroll;height:100dvh;width:80dvw;position:relative;flex-direction:column;align-items:center;display:" + this.display;
         
+        this.header = document.createElement("div");
+        this.header.style="width:100%;height:100px;background-color:rgba(0,150,255,1);"
+        this.main.appendChild(this.header); 
+
 
         this.h1Count = document.createElement("h1");
         this.h1Count.innerHTML = "Question " + (this.pageNumber+1) + "/"+questions.length;
-        this.h1Count.style = "text-align:center;height:5vh";
+        this.h1Count.style = "text-align:center;height:5vh;";
         
-        this.maarginBotDiv = document.createElement("div");
-        this.maarginBotDiv.style="width:100%;margin-bottom:50dvh;"
-        //this.main.appendChild(this.maarginBotDiv); 
+
 
 
         this.divQuestion = document.createElement("div");
-        this.divQuestion.style = "width:100%;min-width:700px;width:60dvw;margin:10% 0 0;padding:0 20px 0 20px;";
+        this.divQuestion.style = "width:100%;min-width:700px;width:60dvw;margin:0;padding:0 20px 0 20px;";
         this.main.appendChild(this.divQuestion);
         this.divQuestion.appendChild(this.h1Count)
 
@@ -143,7 +144,7 @@ class TestPageGen {
         this.bAnswer = document.createElement("button");
         this.bAnswer.type = "button";
         this.bAnswer.addEventListener("click", () => this.answer(this.pageNumber));
-        this.bAnswer.innerHTML = "Show answer";
+        this.bAnswer.innerHTML = "Submit";
         this.bAnswer.style = "font-size:2dvh;margin:0; background-color:white;max-width:300px;width:30dvh;min-width:50px; max-height:60px;height:10dvh;min-height:10px;cursor:pointer;";
         this.divButtons.appendChild(this.bAnswer);
 

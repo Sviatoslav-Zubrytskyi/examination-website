@@ -26,3 +26,6 @@ span.radio::before {
 input[type="radio"]:checked ~ span.radio::before {
     transform: translate(-50%, -50%) scale(1);
 }
+#scrollPanel {
+    height:calc(100% - 100px);
+}

@@ -1,4 +1,4 @@
-    //create a constuctor class for creating an exam question
+//create a constuctor class for creating an exam question
 class Question {
     constructor(question0, answer1, correct1 = false, answer2, correct2 = false, answer3, correct3 = false, answer4, correct4 = false) {
         this.questionList = {
