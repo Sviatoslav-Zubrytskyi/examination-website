@@ -11,15 +11,15 @@ function startTest() {
 
     divPanel = document.createElement("div");
     divPanel.setAttribute("id", "panel");
-    divPanel.style = "height:100dvh;width:20dvw;background-color:rgba(0,150,255,1);z-index:9;float:none;display:none;"
+    divPanel.style = "height:100dvh;width:400px;background-color:white;z-index:9;display:none;"
     content.appendChild(divPanel);
 
     divLogo = document.createElement("div");
-    divLogo.style = "line-height:4dvh;height:100px;font-size:2dvh;text-align:center;display:flex;align-items:center;justify-content:center;color:white;position:sticky;top:0;background-color:rgba(0,150,255,1);z-index:10;"
+    divLogo.style = "line-height:4dvh;height:100px;font-size:16px;text-align:center;display:flex;align-items:center;justify-content:center;color:white;position:sticky;top:0;background-color:rgba(0,150,255,1);z-index:10;"
     divPanel.appendChild(divLogo);
     
     divScroll = document.createElement("div");
-    divScroll.style = "overflow-y:scroll;width:100%;background-color:rgba(0,0,0,0.2);"
+    divScroll.style = "overflow-y:scroll;width:100%;background-color:white;"
     divScroll.setAttribute("id", "scrollPanel");
     divPanel.appendChild(divScroll);
 
