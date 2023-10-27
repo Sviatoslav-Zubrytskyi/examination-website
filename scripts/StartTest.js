@@ -2,7 +2,7 @@ let pageCount = 0;
 let testPages=[];
 var content;
 let answeredQuestions = 0;
-let time = 200;
+let time = 2;
 function startTest() {
     content = document.createElement("div");
     content.style = "margin:0;background-color:rgba(0,0,0,0.01);display:flex;"
@@ -72,6 +72,7 @@ function startTest() {
 
     function stopTest () {
         for (const [i, questionn] of testPages.entries()) {
+            questionn.readyToSubmit = true;
             questionn.answer(i);
         };
     }
