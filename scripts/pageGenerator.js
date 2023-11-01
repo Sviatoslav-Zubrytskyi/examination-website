@@ -1,6 +1,7 @@
 let currentPage = 0;
 let popUpExists = false;
 let finalScore = 0;
+let testFinished = false;
 document.body.style = "margin:0;"
 document.body.style.overflow = 'hidden';
 class TestPageGen {
@@ -17,8 +18,17 @@ class TestPageGen {
         this.main.style = "overflow-y:scroll;overflow-x:hidden;height:100dvh;width:calc(100dvw - 400px);position:relative;flex-direction:column;align-items:center;display:" + this.display;
 
         this.header = document.createElement("div");
-        this.header.style="position:absolute;top:0;left:0;width:100%;height:100px;background-color:rgba(0,150,255,1);"
+        this.header.style="position:fixed;top:0;left:0;width:100%;height:100px;background-color:white;z-index:2;display:flex;justify-content:flex-end;align-items:center;"
         this.main.appendChild(this.header); 
+
+        this.handIn = document.createElement("div");
+        this.handIn.style = "width:150px; height:50px;border:1px rgba(0,0,0,0.2) solid;z-index:999;background-color:white;color:rgba(0,150,255,1);margin:0 50px;font-size:24px;text-align:center;vertical-align:center;display: flex; align-items: center; justify-content: center;line:30px; cursor:pointer;"
+        this.handIn.innerHTML = "Hand in";
+        this.handIn.addEventListener("click", ()=> {
+            this.handInM();
+        })
+        this.header.appendChild(this.handIn);
+
         
         this.firstMainDiv = document.createElement("div");
         this.firstMainDiv.style = "position:relative;height:200px;margin-top:100px;width:100%;display:flex;justify-content:center;";
@@ -76,14 +86,8 @@ class TestPageGen {
         this.main.appendChild(this.divQuestion);
 
         this.divButtons = document.createElement("div");
-        this.divButtons.style ="display:flex; height:20%;width:100%; align-items:center;gap:30px; margin:0 0 20%; flex-direction:column;";
+        this.divButtons.style ="display:flex; height:20%;width:100%; align-items:center;gap:30px; margin:0; flex-direction:column;";
         this.main.appendChild(this.divButtons);
-
-
-
-        // this.form = document.createElement("form");
-        // this.form.style = "width:100%;height:100%;margin:0;padding:0;";
-        // this.divQuestion.appendChild(this.form);
 
         this.h2Q = document.createElement("p");
         this.h2Q.style = "margin-bottom:15dvh;padding:0;font-size:24px;"
@@ -107,9 +111,6 @@ class TestPageGen {
         this.span1.setAttribute("class", "radio");
         let sStyle = "position:absolute;left:0;top:0.1dvh;width:1.2dvw;height:1.2dvw;transition:.3s;display:inline-block;cursor:pointer;border:2.5px solid rgba(0,0,0,0.3); aspect-ratio: 1;border-radius:50%;";
         this.span1.style = sStyle;
-        this.pseudo = document.createpsudoelement 
-        
-        
         
         this.label1.for = this.q1.id;
         this.label1.appendChild(this.q1);
@@ -175,7 +176,7 @@ class TestPageGen {
         this.bAnswer.type = "button";
         this.bAnswer.addEventListener("click", () => this.answer(this.pageNumber));
         this.bAnswer.innerHTML = "Submit";
-        this.bAnswer.style = "display:flex;align-items:center;justify-content:center;color:gray;font-size:24px;margin:0; background-color:white;width:35dvw;min-width:50px; max-height:60px;height:10dvh;min-height:10px;cursor:pointer;transition:0.1s;";
+        this.bAnswer.style = "display:flex;align-items:center;justify-content:center;color:gray;font-size:24px;margin:0; background-color:white;width:35dvw;min-width:50px; max-height:60px;height:10dvh;min-height:10px;cursor:pointer;transition:0.1s;border:1px rgba(0,0,0,0.2) solid;";
         this.divButtons.appendChild(this.bAnswer);
         
         this.pReady = document.createElement("p");
@@ -259,9 +260,12 @@ class TestPageGen {
         }
     }
     answer(page) {
-            
+
             const labels = [this.label1,this.label2, this.label3, this.label4];
-            
+            if (answeredQuestions == questions.length) {
+                testFinished = true;
+                
+            }
             if(!this.readyToSubmit) {
                 console.log("not ready to")
                 this.pReady.innerHTML = "Please complete your answer before submitting.";
@@ -279,6 +283,7 @@ class TestPageGen {
 
                     if (questions[page].questionList[i].correct  && label.firstChild.checked){
                         finalScore++;
+                        divPanelInfo.innerHTML = "Answered questions: " + answeredQuestions + "/" + questions.length;
                         this.checkMark.style["opacity"] = 1;
                         this.Xwrong.style["z-index"] = "-1";
                     }
@@ -339,25 +344,8 @@ class TestPageGen {
                     bPopUp.style["opacity"] = 1;
                     bPopUp.style["z-index"] = 998;
                 }
-                if (answeredQuestions == questions.length || time ==0){
-                    pPopUp.innerHTML = "Your score: " + finalScore + "/" + questions.length;
-                } else {
-                    pPopUp.innerHTML = "Answer all the questions first";
-                }
                 
             }
-            
-
-            if (Math.floor(time/60).length == 2) {
-                if (str(time%60).length == 2) {
-                    divLogo.innerHTML = "Time left: " + Math.floor(time/60) +":" + time%6;;
-                } else divLogo.innerHTML = "Time left: " + Math.floor(time/60) +":0" + time%6;;
-            }
-            else {
-                if (time%60/10 >=1) {
-                    divLogo.innerHTML = "Time left: 0" + Math.floor(time/60) +":" + time%60;
-                } else divLogo.innerHTML = "Time left: 0" + Math.floor(time/60) +":0" + time%60;
-            }divLogo.innerHTML += "<br> Answered questions: " + answeredQuestions + "/" + questions.length;
     }
     goBack() {
         if (popUpExists) hidePopUp();
@@ -367,6 +355,23 @@ class TestPageGen {
             testPages[currentPage].main.style["display"] = "flex";
             testPages[currentPage+1].divPQuesiton.style["background-color"] = "white";
             testPages[currentPage].divPQuesiton.style["background-color"] = "rgba(232,244,252,0.9)";
+        }
+    }
+    handInM(){
+        if (!popUpExists){
+            createPopUp();
+            popUpExists = true;
+        } else {
+            divMainPopUp.style["opacity"] = 1;
+            divMainPopUp.style["z-index"] = 999;
+            bPopUp.style["opacity"] = 1;
+            bPopUp.style["z-index"] = 998;
+        }
+        if (answeredQuestions == questions.length || time ==0){
+
+
+        } else {
+            titlePopUpText.innerHTML = "Not all of the questions are submitted";
         }
     }
 }   
