@@ -24,6 +24,7 @@ class Question {
 
 }
 
+//creating an array with questions displayed on the page
 const questions = [
     new Question(
         '"Provides information about the performance of a system which can be used to modify its behaviour"<br><br> This is the definition of:', 

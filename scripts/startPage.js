@@ -1,3 +1,4 @@
+//creates button in the middle on the first page
 buttonStart = document.createElement("button");
 buttonStart.type="button";
 buttonStart.addEventListener("click", startTest);
