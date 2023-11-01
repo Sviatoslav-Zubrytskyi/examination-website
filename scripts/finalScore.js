@@ -1,4 +1,12 @@
+function hidePopUp() {
+    divMainPopUp.style["opacity"] = 0;
+    divMainPopUp.style["z-index"] = -1;
+    bPopUp.style["opacity"] = 0;
+    bPopUp.style["z-index"] = -1;
+}
 function createPopUp() {
+    popUpExists = true;
+    
     divMainPopUp= document.createElement("div");
     document.body.appendChild(divMainPopUp);
     divMainPopUp.style = "position:relative;display:flex;flex-direction:column;gap:1vh;opacity:1; border-radius:50px;width:800px; height:400px;background-color:white;position:absolute;z-index:999;top:50%;left:50%;transform:translate(-50%,-50%); border:solid 1px black;transition: all 0.1s ease-in-out;"
@@ -49,11 +57,7 @@ function createPopUp() {
     if (testFinished) {
         changePopUp();
     }
+
 }
 
-function hidePopUp() {
-    divMainPopUp.style["opacity"] = 0;
-    divMainPopUp.style["z-index"] = -1;
-    bPopUp.style["opacity"] = 0;
-    bPopUp.style["z-index"] = -1;
-}
+

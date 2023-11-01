@@ -4,8 +4,45 @@ var content;
 let answeredQuestions = 0;
 let time = 20;
 let timeLeft = time;
-timerCircle.style.strokeDashoffset = 1;
+let timer;
+function isTimeLeft() {
+    return time > -1;
+}
+function runTimer(timerElement) {
+    const timerCircle = document.getElementById('movingCircle');
+    console.log(timerCircle);
+    timerElement.classList.add('animatable');
+    timerCircle.style.strokeDashoffset = 1;
+    
+    
+    timer = setInterval(()=>{
+        if(isTimeLeft()){
+            if (Math.floor(time/60).length == 2) {
+                if (str(time%60).length == 2) {
+                    divDisplayedTime.innerHTML = "Time left: " + Math.floor(time/60) +":" + time%60;
+                } else divDisplayedTime.innerHTML = "Time left: " + Math.floor(time/60) +":0" + time%60;
+            }
+            else {
+                if (time%60/10 >=1) {
+                    divDisplayedTime.innerHTML = "Time left: 0" + Math.floor(time/60) +":" + time%60;
+                } else divDisplayedTime.innerHTML = "Time left: 0" + Math.floor(time/60) +":0" + time%60;
+            }
+
+            const timeRemaining = time--;
+            const normalizedTime = (20 - timeRemaining) / 20;
+            timerCircle.style.strokeDashoffset = normalizedTime;
+
+        } else {
+            timerElement.classList.remove('animatable');
+            stopTest();
+            
+        }  
+
+      
+    }, 1000);
+}
 function startTest() {
+    popUpTimer();
     content = document.createElement("div");
     content.style = "margin:0;background-color:rgba(0,0,0,0.01);display:flex;"
     content.style.overflow = "hidden";
@@ -41,7 +78,8 @@ function startTest() {
     circleTimer1.setAttribute("r", "10");
     svgTimerClock.appendChild(circleTimer1);
 
-    circleTimer2 = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+    circleTimer2 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    circleTimer2.setAttribute("id", "movingCircle")
     circleTimer2.setAttribute("cx", "50%");
     circleTimer2.setAttribute("cy", "50%");
     circleTimer2.setAttribute("r", "10");
@@ -70,42 +108,10 @@ function startTest() {
     testPages[0].main.style["display"] = "flex";
     buttonStart.style = "display:none";
     divPanel.style["display"] = "block";
-    function isTimeLeft() {
-        return time > -1;
-    }
 
-    function runTimer(timerElement) {
-	    const timerCircle = timerElement.querySelector('svg > circle + circle');
-	    timerElement.classList.add('animatable');
-	    
-        
-        const timer = setInterval(()=>{
-            if(isTimeLeft()){
-                if (Math.floor(time/60).length == 2) {
-                    if (str(time%60).length == 2) {
-                        divDisplayedTime.innerHTML = "Time left: " + Math.floor(time/60) +":" + time%60;
-                    } else divDisplayedTime.innerHTML = "Time left: " + Math.floor(time/60) +":0" + time%60;
-                }
-                else {
-                    if (time%60/10 >=1) {
-                        divDisplayedTime.innerHTML = "Time left: 0" + Math.floor(time/60) +":" + time%60;
-                    } else divDisplayedTime.innerHTML = "Time left: 0" + Math.floor(time/60) +":0" + time%60;
-                }
 
-	    		const timeRemaining = time--;
-	    		const normalizedTime = (20 - timeRemaining) / 20;
-	    		timerCircle.style.strokeDashoffset = normalizedTime;
-
-	    	} else {
-	    		timerElement.classList.remove('animatable');
-                stopTest();
-                clearInterval(timer);
-	    	}  
     
-          
-        }, 1000);
-    }
-    runTimer(document.querySelector('.timer'));
+    
     if (time == 0) {
         stopTest();
     }
@@ -133,6 +139,8 @@ function changePopUp() {
     warningPopUpText.style["opacity"] = 0;
 }
 function stopTest () {
+    createPopUp();
+    clearInterval(timer);
     for (const [i, questionn] of testPages.entries()) {
         questionn.readyToSubmit = true;
         questionn.answer(i);

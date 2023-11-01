@@ -337,7 +337,6 @@ class TestPageGen {
             } else if (this.displayButtonAnswer== "Show result") {
                 if (!popUpExists){
                     createPopUp();
-                    popUpExists = true;
                 } else {
                     divMainPopUp.style["opacity"] = 1;
                     divMainPopUp.style["z-index"] = 999;

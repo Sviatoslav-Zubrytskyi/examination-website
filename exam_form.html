@@ -14,38 +14,7 @@
     <script src="./scripts/pageGenerator.js"></script>
     <script src="./scripts/startPage.js"></script>  
     <script src="./scripts/finalScore.js"></script>
-<!-- 
-        <div class="timer animatable" style = "margin-top: 200px;">
-          <svg>
-            <circle cx="50%" cy="50%" r="10"/>
-            <circle cx="50%" cy="50%" r="10" pathLength="1" />
-          </svg>
-        </div>
-        <script>
-            let timeLeft = 20;
-
-    function isTimeLeft() {
-        return timeLeft > -1;
-    }
-
-    function runTimer(timerElement) {
-	    const timerCircle = timerElement.querySelector('svg > circle + circle');
-	    timerElement.classList.add('animatable');
-	    timerCircle.style.strokeDashoffset = 1;
-        
-	    let countdownTimer = setInterval(function(){
-	    	if(isTimeLeft()){
-	    		const timeRemaining = timeLeft--;
-	    		const normalizedTime = (20 - timeRemaining) / 20;
-	    		timerCircle.style.strokeDashoffset = normalizedTime;
-	    	} else {
-	    		clearInterval(countdownTimer);
-	    		timerElement.classList.remove('animatable');
-	    	}  
-	    }, 1000);
-}
-
-runTimer(document.querySelector('.timer')); -->
+    <script src="./scripts/timer.js"></script>
         </script>
     </body>
 </html>

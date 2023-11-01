@@ -1,6 +1,19 @@
 :root{
     --color:rgba(0,0,0,0.3);
 }
+@font-face {
+    font-family: 'Nexa Bold';
+    src: url('../src/fonts/Nexa\ Bold.otf');
+}
+
+@font-face {
+    font-family: 'Nexa Light';
+    src: url('../src/fonts/Nexa\ Light.otf');
+}
+
+* {
+    font-family: "Nexa Light";
+}
 
 label::before {
     content:"";
