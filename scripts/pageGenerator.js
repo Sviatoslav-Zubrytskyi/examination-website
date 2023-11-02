@@ -6,13 +6,16 @@ document.body.style.overflow = 'hidden';
 
 //class for creating a HTML page based on questions
 class TestPageGen {
-    constructor(pageNumber) {
+    constructor(pageNumber, questionSet) {
+        this.questions = questionSet;
         this.pageNumber = pageNumber;
         this.displayButtonAnswer = "answer"; // current display state of the button
+        this.goForward = this.goForward.bind(this);
     }
 
     //method for generating HTML page
     newTestPage() {
+
         //creates main content box
         this.main = document.createElement("main");
         this.main.setAttribute("id", "main");
@@ -66,7 +69,7 @@ class TestPageGen {
         this.svgGoBack.addEventListener("click", this.goBack);
         
         //on the last page goForward button is not displayed
-        if (this.pageNumber == questions.length-1) {
+        if (this.pageNumber == this.questions.length-1) {
             this.svgGoForward.style["opacity"] = 0;
             this.svgGoForward.style["z-index"] = -2;
         }
@@ -90,7 +93,7 @@ class TestPageGen {
 
         //creates h1 with question count
         this.h1Count = document.createElement("p");
-        this.h1Count.innerHTML = "Question " + (this.pageNumber+1) + "/"+questions.length;
+        this.h1Count.innerHTML = "Question " + (this.pageNumber+1) + "/" + this.questions.length;
         this.h1Count.style = "text-align:center;height:5vh; font-size:24px;";
         this.firstMainDiv.appendChild(this.h1Count);
 
@@ -108,7 +111,28 @@ class TestPageGen {
         this.h2Q = document.createElement("p");
         this.h2Q.style = "margin-bottom:15dvh;padding:0;font-size:24px;"
         this.divQuestion.appendChild(this.h2Q);
-        this.h2Q.innerHTML = questions[this.pageNumber].questionList.question;
+        this.h2Q.innerHTML = this.questions[this.pageNumber].questionList.question;
+
+        //create image for the question
+        if(this.questions[this.pageNumber].questionList.img != "") {
+            this.qImg = document.createElement("img");
+            this.qImg.alt = this.questions[this.pageNumber].questionList.img;
+            this.qImg.src = this.questions[this.pageNumber].questionList.img;
+            this.divQuestion.appendChild(this.qImg);
+        }
+
+        //create audio for the question
+        if(this.questions[this.pageNumber].questionList.audio != "") {
+            this.qAudio = document.createElement("audio");
+            this.qAudio.controls = "controls";
+            this.qAudio.alt = this.questions[this.pageNumber].questionList.audio;
+            this.qAudio.src = this.questions[this.pageNumber].questionList.audio;
+
+            this.divAudio = document.createElement("div");
+            this.divAudio.style = "display:flex; justify-content:center;align-items:center;width:100%;height:50px;"
+            this.divQuestion.appendChild(this.divAudio)
+            this.divAudio.appendChild(this.qAudio);
+        }
 
         //creates first label
         this.label1 = document.createElement("label");
@@ -120,7 +144,6 @@ class TestPageGen {
         this.q1 = document.createElement("input");
         this.q1.type = "radio";
         this.q1.setAttribute("name", "q");
-        this.q1.setAttribute("checked", true);
         let qStyle = "display:none;"; // defines style for all of the radio buttons
         this.q1.style = qStyle;
         this.q1.setAttribute("id", "q1");
@@ -137,7 +160,7 @@ class TestPageGen {
         this.label1.appendChild(this.span1);
 
         //gets one of the possible answers from question set
-        this.label1.innerHTML += questions[this.pageNumber].questionList[0].answer;
+        this.label1.innerHTML += this.questions[this.pageNumber].questionList[0].answer;
 
         //creates second label
         this.label2 = document.createElement("label");
@@ -162,7 +185,7 @@ class TestPageGen {
         this.label2.appendChild(this.span2);
 
         //gets one of the possible answers from question set
-        this.label2.innerHTML += questions[this.pageNumber].questionList[1].answer;
+        this.label2.innerHTML += this.questions[this.pageNumber].questionList[1].answer;
 
         //creates third label
         this.label3 = document.createElement("label");
@@ -187,7 +210,7 @@ class TestPageGen {
         this.label3.appendChild(this.span3);
 
         //gets one of the possible answers from question set
-        this.label3.innerHTML += questions[this.pageNumber].questionList[2].answer;
+        this.label3.innerHTML += this.questions[this.pageNumber].questionList[2].answer;
 
         //creates fourth label
         this.label4 = document.createElement("label");
@@ -212,7 +235,7 @@ class TestPageGen {
         this.label4.appendChild(this.span4);
 
         //gets one of the possible answers from question set
-        this.label4.innerHTML += questions[this.pageNumber].questionList[3].answer;
+        this.label4.innerHTML += this.questions[this.pageNumber].questionList[3].answer;
         
         //creates Submit question button
         this.bAnswer = document.createElement("button");
@@ -255,12 +278,12 @@ class TestPageGen {
         this.divPQuesiton.style = "font-size: 16px;padding:15px 1dvw 15px 3dvw;background-color:white;cursor:pointer;position:relative;";
         divScroll.appendChild(this.divPQuesiton);
         //fills in individual div based on the current question
-        if (questions[this.pageNumber].questionList.question.replace(/<br>.*$/, "...").length > 150 ) { 
+        if (this.questions[this.pageNumber].questionList.question.replace(/<br>.*$/, "...").length > 150 ) { 
             // does not fully display questions longer than 150 characters. Replaces all text after </br> with "".
-            this.divPQuesiton.innerHTML = (this.pageNumber+1) + ". " + questions[this.pageNumber].questionList.question.replace(/<br>.*$/, "").slice(0,150) + "...";
+            this.divPQuesiton.innerHTML = (this.pageNumber+1) + ". " + this.questions[this.pageNumber].questionList.question.replace(/<br>.*$/, "").slice(0,150) + "...";
         } else {
             // if < 150 characters, replaces all text after </br> with "" and fully displays this question
-            this.divPQuesiton.innerHTML = (this.pageNumber+1) + ". " + questions[this.pageNumber].questionList.question.replace(/<br>.*$/, "");
+            this.divPQuesiton.innerHTML = (this.pageNumber+1) + ". " + this.questions[this.pageNumber].questionList.question.replace(/<br>.*$/, "");
         }
 
         //adds focus effect on first question div of the panel
@@ -308,7 +331,8 @@ class TestPageGen {
 
     //method for goForward button
     goForward() {
-        if(currentPage != questions.length-1) {
+        console.log(this.questions)
+        if(currentPage != this.questions.length-1) {
             currentPage++; // goes forward
             testPages[currentPage-1].main.style["display"] = "none"; // hides current page
             testPages[currentPage].main.style["display"] = "flex"; // displays next page
@@ -320,10 +344,11 @@ class TestPageGen {
     
     //method for submit button
     answer(page) {
+        
             const labels = [this.label1,this.label2, this.label3, this.label4]; // creates array of labels
             
             //checks if test is already finished
-            if (answeredQuestions == questions.length) {
+            if (answeredQuestions == this.questions.length) {
                 testFinished = true; 
             }
 
@@ -343,19 +368,19 @@ class TestPageGen {
                 this.bAnswer.style["color"] = "rgba(0,150,255,1)";
                 
                 if (time !=0) answeredQuestions++; // answered question count ++ 
+                divPanelInfo.innerHTML = "Answered questions: " + answeredQuestions + "/" + this.questions.length; // changes current display of the answered questions
 
                 // for each [label number, label] ->
                 for (const [i, label] of labels.entries()){
                     // if answer is correct -> execute the code below
-                    if (questions[page].questionList[i].correct  && label.firstChild.checked){
+                    if (this.questions[page].questionList[i].correct  && label.firstChild.checked){
                         finalScore++; // one more right question, so one more point to the final score
-                        divPanelInfo.innerHTML = "Answered questions: " + answeredQuestions + "/" + questions.length; // changes current display of the answered questions
                         this.checkMark.style["opacity"] = "1"; // shows checkmark on the left panel 
                         this.Xwrong.style["z-index"] = "-1"; // hides X mark
                     }
-                    if(questions[page].questionList[i].correct){
+                    if(this.questions[page].questionList[i].correct){
                         label.style["color"] = "green"; // changes text color to green to the correct answer
-                    } else if (!questions[page].questionList[i].correct  && label.firstChild.checked) {
+                    } else if (!this.questions[page].questionList[i].correct  && label.firstChild.checked) {
                         //changes text color to red if user made a mistake
                         label.style["color"] = "red";
                     } else {
@@ -372,7 +397,7 @@ class TestPageGen {
                 } 
                 
                 
-                if(page==questions.length-1) {
+                if(page==this.questions.length-1) {
                     //on the last page instead of "Next" state, button gets "Show result" state
                     this.bAnswer.innerHTML = "Show result";
                     this.displayButtonAnswer = "Show result";
@@ -403,7 +428,8 @@ class TestPageGen {
                         this.bAnswer.style["background-color"] = "white";
                     })
                 }
-            
+                    //finish test if all of the questions are submitted
+                    if (answeredQuestions == this.questions.length) time = 0;
             }else if(this.displayButtonAnswer == "Next question") { // if "Next" state is a current state -> goes to the next page
                 this.goForward();
             } else if (this.displayButtonAnswer== "Show result") { // if "Show result" is a current state -> shows popUp
@@ -442,7 +468,7 @@ class TestPageGen {
             bPopUp.style["opacity"] = 1;
             bPopUp.style["z-index"] = 998;
         }
-        if (answeredQuestions == questions.length || time ==0){}
+        if (answeredQuestions == this.questions.length || time ==0){}
         else titlePopUpText.innerHTML = "Not all of the questions are submitted"; // if user did not finish the test -> change sign in Hand In popUp
     }
 }   

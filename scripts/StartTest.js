@@ -2,10 +2,12 @@ let pageCount = 0;
 let testPages=[];
 var content;
 let answeredQuestions = 0;
-let time = 20;
+let time = 200;
+let initialTime = time;
 let timer;
+let questionLength;
 
-function startTest() {
+function startTest(_button) {
     popUpTimer(); // creates time warning Pop Up
 
     // creating content div
@@ -68,17 +70,20 @@ function startTest() {
     divPanelInfo = document.createElement("div");
     divPanelInfo.style = "font-size: 16px;background-color:white;position:relative;color:gray;padding:5px 0 5px 1vw;"
     divScroll.appendChild(divPanelInfo);
-    divPanelInfo.innerHTML = "Answered questions: " + answeredQuestions + "/" + questions.length;
+    questionLength = questionSets[_button.target.id].length
+    divPanelInfo.innerHTML = "Answered questions: " + answeredQuestions + "/" + questionLength;
 
+    console.log()
     //generating question page for each page and the div of the question in the panel
-    questions.forEach((question) => {
-        testPages.push(new TestPageGen(pageCount, "none")) // for each question set inherits a TestPageGen class
+    questionSets[_button.target.id].forEach((question) => {
+        testPages.push(new TestPageGen(pageCount, questionSets[_button.target.id] )) // for each question set inherits a TestPageGen class
         testPages[pageCount].newTestPage(); // creates page for each question
     
         pageCount++;
     });
 
     testPages[0].main.style["display"] = "flex"; // displays only first question page
-    buttonStart.style = "display:none"; // hides button on the very first page
+    buttonStart1.style = "display:none"; // hides button on the very first page
+    buttonStart2.style = "display:none"; // hides button on the very first page
     setTimeTo(divDisplayedTime); // displays static time before timer goes
 }

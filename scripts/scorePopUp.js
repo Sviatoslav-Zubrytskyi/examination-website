@@ -80,7 +80,7 @@ function hidePopUp() {
 
 //function to change popUp to only show the result
 function changePopUp() {
-    titlePopUpText.innerHTML = "Your score: " + finalScore + "/" + questions.length;
+    titlePopUpText.innerHTML = "Your score: " + finalScore + "/" + questionLength;
     popUpSubmit.style["opacity"] = 0;
     warningPopUpText.style["opacity"] = 0;
 }

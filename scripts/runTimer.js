@@ -14,7 +14,7 @@ function runTimer(timerElement) {
             setTimeTo(divDisplayedTime); // displays time in divDisplayedTime in format 00:00 
     
             const timeRemaining = time--; // -1 second
-            const normalizedTime = (20 - timeRemaining) / 20; // defines in which direction circle goes
+            const normalizedTime = (initialTime - timeRemaining) / initialTime; // defines in which direction circle goes
             timerCircle.style.strokeDashoffset = normalizedTime; // changes style of the time crcle
 
         } else {

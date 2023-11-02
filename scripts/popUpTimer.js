@@ -15,7 +15,7 @@ function popUpTimer() {
 
     //creates div to store text inside
     divTimePopUpText = document.createElement("div");
-    divTimePopUpText.style = "width:100%; height:250px; display:flex; flex-direction:column;padding-left:20px; align-items:center;padding-top:100px;"
+    divTimePopUpText.style = "width:100%; height:200px; display:flex; flex-direction:column;padding-left:20px; align-items:center;padding-top:100px;"
     divTimeMainPopUp.appendChild(divTimePopUpText);
 
     //creates paragrapgh with text inside text div
@@ -39,19 +39,19 @@ function popUpTimer() {
     warningTimePopUpText = document.createElement("div");
     warningTimePopUpText.innerHTML = "After starting the test you are not able to stop the time.";
     warningTimePopUpText.style = "color:gray;"
-    divTimePopUpText.appendChild(warningTimePopUpText);
-
+    
     //creates div for start button
     divTimeButtons = document.createElement("div");
-    divTimeButtons.style = "display:flex; justify-content:center;align-items:center;width:100%;height:70px;margin-top:50px;"
+    divTimeButtons.style = "display:flex;align-items:center;width:100%;height:150px;flex-direction:column; gap:20px;"
     divTimeMainPopUp.appendChild(divTimeButtons);
-
+    
     //creates start test button
     TimePopUpStart = document.createElement("button")
     TimePopUpStart.style = "width:200px;height:60px; background-color:orange;color:white;border:1px rgba(0,0,0,0.2) solid; font-size:24px;cursor:pointer;";
     TimePopUpStart.innerHTML = "<b>Start</b>";
     TimePopUpStart.addEventListener("click", hideTimePopUp); // ads event listener so test actually start on press
     divTimeButtons.appendChild(TimePopUpStart);
+    divTimeButtons.appendChild(warningTimePopUpText);
 }
 
 //hides time pop up and starts timer
