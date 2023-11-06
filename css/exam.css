@@ -71,6 +71,7 @@ input[type="radio"]:checked ~ span.radio::before {
 .timer.animatable > svg > circle + circle {
     transition: stroke-dashoffset 0.3s ease;
 }
-img {
+.img {
     margin: -100px 0 50px;
+    width:100%;
 }

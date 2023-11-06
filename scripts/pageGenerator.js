@@ -116,6 +116,7 @@ class TestPageGen {
         //create image for the question
         if(this.questions[this.pageNumber].questionList.img != "") {
             this.qImg = document.createElement("img");
+            this.qImg.setAttribute("class", "img");
             this.qImg.alt = this.questions[this.pageNumber].questionList.img;
             this.qImg.src = this.questions[this.pageNumber].questionList.img;
             this.divQuestion.appendChild(this.qImg);

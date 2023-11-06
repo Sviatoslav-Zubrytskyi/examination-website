@@ -6,7 +6,7 @@ let time = 200;
 let initialTime = time;
 let timer;
 let questionLength;
-
+let divPanel;
 function startTest(_button) {
     popUpTimer(); // creates time warning Pop Up
 
@@ -86,4 +86,5 @@ function startTest(_button) {
     buttonStart1.style = "display:none"; // hides button on the very first page
     buttonStart2.style = "display:none"; // hides button on the very first page
     setTimeTo(divDisplayedTime); // displays static time before timer goes
+    resetMenu();
 }
