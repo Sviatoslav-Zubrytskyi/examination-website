@@ -1,6 +1,17 @@
 # Examination Website
 
-This is a simple one-page examination website designed to help you understand the basics of web development, primarily using JavaScript. The website offers two types of tests: casual and real exams.
+![Website Preview](preview.png)
+
+Welcome to the Examination Website, a simple one-page web application to test your knowledge and explore web development basics. This project primarily utilizes JavaScript (92%) to create engaging online examinations.
+
+## Table of Contents
+
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [How to Use](#how-to-use)
+- [Results](#results)
+- [Live Demo](#live-demo)
+- [Local Setup](#local-setup)
 
 ## Features
 
