@@ -2,7 +2,7 @@
 
 ![Website Preview](preview.png)
 
-Welcome to the Examination Website, a simple one-page web application to test your knowledge and explore web development basics. This project primarily utilizes JavaScript (92%) to create engaging online examinations.
+Welcome to the Examination Website, a simple one-page web application to test your knowledge and explore web development basics. This project primarily utilizes JavaScript to create engaging online examinations.
 
 ## Table of Contents
 
