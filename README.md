@@ -38,7 +38,7 @@ To view your results, you have three options:
 
 ## Project Showcase
 
-To see the project in action, you can access the live version hosted on GitHub Pages: [Examination Website](https://sviatoslav-zubrytskyi.github.io/examination-website/exam_form.html).
+To see the project in action, you can access the live version hosted on GitHub Pages: [Examination Website](https://sviatoslav-zubrytskyi.github.io/examination-website/exam_form.html){:target="_blank"}.
 
 ## Local Setup
 
